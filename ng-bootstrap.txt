@@ -1,8 +1,0 @@
-"node_modules/bootstrap/dist/css/bootstrap.min.css"
-"node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
-
-"scripts": {
-  "ng": "ng",
-  "start": "ng serve",
-  "server": "json-server --watch db.json --port 3000"
-}
