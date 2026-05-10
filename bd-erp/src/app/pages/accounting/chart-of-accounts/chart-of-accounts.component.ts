@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ChartOfAccountService } from '../../../services/chart-of-account.service';
 import { 
   ChartOfAccount, 
@@ -7,9 +7,11 @@ import {
   ACCOUNT_TYPES, 
   ACCOUNT_CATEGORIES 
 } from '../../../models/chart-of-account.model';
+import { CommonModule, DecimalPipe } from '@angular/common';
 
 @Component({
   selector: 'app-chart-of-accounts',
+  imports: [CommonModule, FormsModule, DecimalPipe, ReactiveFormsModule],
   templateUrl: './chart-of-accounts.component.html',
   styleUrls: ['./chart-of-accounts.component.scss']
 })
