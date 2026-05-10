@@ -1,0 +1,330 @@
+{
+  "chartOfAccounts": [
+    {
+      "id": 1,
+      "code": "1001",
+      "name": "Cash in Hand (BDT)",
+      "type": "Asset",
+      "category": "Current Asset",
+      "parentId": null,
+      "isActive": true,
+      "openingBalance": 50000,
+      "createdAt": "2024-01-01",
+      "updatedAt": "2024-01-01"
+    },
+    {
+      "id": 2,
+      "code": "1002",
+      "name": "bKash Float",
+      "type": "Asset",
+      "category": "Current Asset",
+      "parentId": null,
+      "isActive": true,
+      "openingBalance": 25000,
+      "createdAt": "2024-01-01",
+      "updatedAt": "2024-01-01"
+    },
+    {
+      "id": 3,
+      "code": "1003",
+      "name": "Nagad Float",
+      "type": "Asset",
+      "category": "Current Asset",
+      "parentId": null,
+      "isActive": true,
+      "openingBalance": 15000,
+      "createdAt": "2024-01-01",
+      "updatedAt": "2024-01-01"
+    },
+    {
+      "id": 4,
+      "code": "1004",
+      "name": "Bank Current Account - City Bank",
+      "type": "Asset",
+      "category": "Current Asset",
+      "parentId": null,
+      "isActive": true,
+      "openingBalance": 200000,
+      "createdAt": "2024-01-01",
+      "updatedAt": "2024-01-01"
+    },
+    {
+      "id": 5,
+      "code": "1100",
+      "name": "Accounts Receivable",
+      "type": "Asset",
+      "category": "Current Asset",
+      "parentId": null,
+      "isActive": true,
+      "openingBalance": 75000,
+      "createdAt": "2024-01-01",
+      "updatedAt": "2024-01-01"
+    },
+    {
+      "id": 6,
+      "code": "1200",
+      "name": "Inventory Asset",
+      "type": "Asset",
+      "category": "Current Asset",
+      "parentId": null,
+      "isActive": true,
+      "openingBalance": 150000,
+      "createdAt": "2024-01-01",
+      "updatedAt": "2024-01-01"
+    },
+    {
+      "id": 7,
+      "code": "1500",
+      "name": "Fixed Assets",
+      "type": "Asset",
+      "category": "Non-Current Asset",
+      "parentId": null,
+      "isActive": true,
+      "openingBalance": 500000,
+      "createdAt": "2024-01-01",
+      "updatedAt": "2024-01-01"
+    },
+    {
+      "id": 8,
+      "code": "2000",
+      "name": "Accounts Payable",
+      "type": "Liability",
+      "category": "Current Liability",
+      "parentId": null,
+      "isActive": true,
+      "openingBalance": 45000,
+      "createdAt": "2024-01-01",
+      "updatedAt": "2024-01-01"
+    },
+    {
+      "id": 9,
+      "code": "2001",
+      "name": "VAT Payable (Mushak 6.3)",
+      "type": "Liability",
+      "category": "Current Liability",
+      "parentId": null,
+      "isActive": true,
+      "openingBalance": 5000,
+      "createdAt": "2024-01-01",
+      "updatedAt": "2024-01-01"
+    },
+    {
+      "id": 10,
+      "code": "2002",
+      "name": "TDS Payable",
+      "type": "Liability",
+      "category": "Current Liability",
+      "parentId": null,
+      "isActive": true,
+      "openingBalance": 3000,
+      "createdAt": "2024-01-01",
+      "updatedAt": "2024-01-01"
+    },
+    {
+      "id": 11,
+      "code": "3000",
+      "name": "Owner's Capital",
+      "type": "Equity",
+      "category": "Capital",
+      "parentId": null,
+      "isActive": true,
+      "openingBalance": 962000,
+      "createdAt": "2024-01-01",
+      "updatedAt": "2024-01-01"
+    },
+    {
+      "id": 12,
+      "code": "3001",
+      "name": "Retained Earnings",
+      "type": "Equity",
+      "category": "Capital",
+      "parentId": null,
+      "isActive": true,
+      "openingBalance": 0,
+      "createdAt": "2024-01-01",
+      "updatedAt": "2024-01-01"
+    },
+    {
+      "id": 13,
+      "code": "4000",
+      "name": "Product Sales (Standard-Rated VAT)",
+      "type": "Income",
+      "category": "Sales Revenue",
+      "parentId": null,
+      "isActive": true,
+      "openingBalance": 0,
+      "createdAt": "2024-01-01",
+      "updatedAt": "2024-01-01"
+    },
+    {
+      "id": 14,
+      "code": "4001",
+      "name": "Service Income (Exempt)",
+      "type": "Income",
+      "category": "Service Revenue",
+      "parentId": null,
+      "isActive": true,
+      "openingBalance": 0,
+      "createdAt": "2024-01-01",
+      "updatedAt": "2024-01-01"
+    },
+    {
+      "id": 15,
+      "code": "5000",
+      "name": "Salary Expense",
+      "type": "Expense",
+      "category": "Operating Expense",
+      "parentId": null,
+      "isActive": true,
+      "openingBalance": 0,
+      "createdAt": "2024-01-01",
+      "updatedAt": "2024-01-01"
+    },
+    {
+      "id": 16,
+      "code": "5001",
+      "name": "Office Rent",
+      "type": "Expense",
+      "category": "Operating Expense",
+      "parentId": null,
+      "isActive": true,
+      "openingBalance": 0,
+      "createdAt": "2024-01-01",
+      "updatedAt": "2024-01-01"
+    },
+    {
+      "id": 17,
+      "code": "5002",
+      "name": "Utility Bills",
+      "type": "Expense",
+      "category": "Operating Expense",
+      "parentId": null,
+      "isActive": true,
+      "openingBalance": 0,
+      "createdAt": "2024-01-01",
+      "updatedAt": "2024-01-01"
+    },
+    {
+      "id": 18,
+      "code": "5003",
+      "name": "Conveyance",
+      "type": "Expense",
+      "category": "Operating Expense",
+      "parentId": null,
+      "isActive": true,
+      "openingBalance": 0,
+      "createdAt": "2024-01-01",
+      "updatedAt": "2024-01-01"
+    },
+    {
+      "id": 19,
+      "code": "1501",
+      "name": "Accumulated Depreciation",
+      "type": "Asset",
+      "category": "Contra Asset",
+      "parentId": null,
+      "isActive": true,
+      "openingBalance": -50000,
+      "createdAt": "2024-01-01",
+      "updatedAt": "2024-01-01"
+    }
+  ],
+  "vouchers": [
+    {
+      "id": 1,
+      "voucherNo": "JV-2024-001",
+      "voucherType": "Journal",
+      "date": "2024-01-15",
+      "narration": "Business started with cash and bank",
+      "totalAmount": 1000000,
+      "createdBy": "System",
+      "status": "Approved",
+      "voucherLines": [
+        {
+          "id": 1,
+          "accountId": 1,
+          "accountName": "Cash in Hand (BDT)",
+          "accountCode": "1001",
+          "debit": 50000,
+          "credit": 0,
+          "narration": "Cash investment"
+        },
+        {
+          "id": 2,
+          "accountId": 4,
+          "accountName": "Bank Current Account - City Bank",
+          "accountCode": "1004",
+          "debit": 200000,
+          "credit": 0,
+          "narration": "Bank deposit"
+        },
+        {
+          "id": 3,
+          "accountId": 11,
+          "accountName": "Owner's Capital",
+          "accountCode": "3000",
+          "debit": 0,
+          "credit": 250000,
+          "narration": "Owner investment"
+        }
+      ],
+      "createdAt": "2024-01-15T10:00:00Z"
+    },
+    {
+      "id": 2,
+      "voucherNo": "JV-2024-002",
+      "voucherType": "Payment",
+      "date": "2024-01-20",
+      "narration": "Office rent paid via bKash",
+      "totalAmount": 15000,
+      "createdBy": "System",
+      "status": "Approved",
+      "voucherLines": [
+        {
+          "id": 3,
+          "accountId": 16,
+          "accountName": "Office Rent",
+          "accountCode": "5001",
+          "debit": 15000,
+          "credit": 0,
+          "narration": "January office rent"
+        },
+        {
+          "id": 4,
+          "accountId": 2,
+          "accountName": "bKash Float",
+          "accountCode": "1002",
+          "debit": 0,
+          "credit": 15000,
+          "narration": "Rent payment via bKash"
+        }
+      ],
+      "createdAt": "2024-01-20T14:30:00Z"
+    }
+  ],
+  "parties": [
+    {
+      "id": 1,
+      "type": "Customer",
+      "name": "ABC Traders",
+      "bin": "001234567-0202",
+      "phone": "+8801700000001",
+      "email": "abc@example.com",
+      "openingBalance": 0
+    },
+    {
+      "id": 2,
+      "type": "Supplier",
+      "name": "XYZ Suppliers Ltd",
+      "bin": "007654321-0202",
+      "phone": "+8801700000002",
+      "email": "xyz@example.com",
+      "openingBalance": 0
+    }
+  ],
+  "vatSettings": {
+    "vatRate": 15,
+    "vatRegistrationNumber": "BIN-001234567-0202",
+    "fiscalYear": "2023-2024"
+  }
+}
