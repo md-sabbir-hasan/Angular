@@ -6,7 +6,7 @@
   },
   "newProjectRoot": "projects",
   "projects": {
-    "project": {
+    "bangladesh-erp": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:class": {
@@ -50,7 +50,11 @@
               }
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.css",
+              "node_modules/bootstrap/dist/css/bootstrap.min.css"
+            ],
+            "scripts": [
+              "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
             ]
           },
           "configurations": {
@@ -81,10 +85,10 @@
           "builder": "@angular/build:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "project:build:production"
+              "buildTarget": "bangladesh-erp:build:production"
             },
             "development": {
-              "buildTarget": "project:build:development"
+              "buildTarget": "bangladesh-erp:build:development"
             }
           },
           "defaultConfiguration": "development"
