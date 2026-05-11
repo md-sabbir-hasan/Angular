@@ -1,19 +1,19 @@
 {
   "chartOfAccounts": [
     {
-      "id": 1,
-      "code": "1001",
-      "name": "Cash in Hand (BDT)",
-      "type": "Asset",
-      "category": "Current Asset",
-      "parentId": null,
+      "code": "8989",
+      "name": "Drag_add",
+      "type": "Liability",
+      "category": "Current Liability",
       "isActive": true,
       "openingBalance": 50000,
-      "createdAt": "2024-01-01",
-      "updatedAt": "2024-01-01"
+      "parentId": null,
+      "createdAt": "2026-05-11T10:32:10.362Z",
+      "updatedAt": "2026-05-11T10:32:10.362Z",
+      "id": "1"
     },
     {
-      "id": 2,
+      "id": "2",
       "code": "1002",
       "name": "bKash Float",
       "type": "Asset",
@@ -25,7 +25,7 @@
       "updatedAt": "2024-01-01"
     },
     {
-      "id": 3,
+      "id": "3",
       "code": "1003",
       "name": "Nagad Float",
       "type": "Asset",
@@ -37,7 +37,7 @@
       "updatedAt": "2024-01-01"
     },
     {
-      "id": 4,
+      "id": "4",
       "code": "1004",
       "name": "Bank Current Account - City Bank",
       "type": "Asset",
@@ -49,7 +49,7 @@
       "updatedAt": "2024-01-01"
     },
     {
-      "id": 5,
+      "id": "5",
       "code": "1100",
       "name": "Accounts Receivable",
       "type": "Asset",
@@ -61,7 +61,7 @@
       "updatedAt": "2024-01-01"
     },
     {
-      "id": 6,
+      "id": "6",
       "code": "1200",
       "name": "Inventory Asset",
       "type": "Asset",
@@ -73,7 +73,7 @@
       "updatedAt": "2024-01-01"
     },
     {
-      "id": 7,
+      "id": "7",
       "code": "1500",
       "name": "Fixed Assets",
       "type": "Asset",
@@ -85,7 +85,7 @@
       "updatedAt": "2024-01-01"
     },
     {
-      "id": 8,
+      "id": "8",
       "code": "2000",
       "name": "Accounts Payable",
       "type": "Liability",
@@ -97,7 +97,7 @@
       "updatedAt": "2024-01-01"
     },
     {
-      "id": 9,
+      "id": "9",
       "code": "2001",
       "name": "VAT Payable (Mushak 6.3)",
       "type": "Liability",
@@ -109,7 +109,7 @@
       "updatedAt": "2024-01-01"
     },
     {
-      "id": 10,
+      "id": "10",
       "code": "2002",
       "name": "TDS Payable",
       "type": "Liability",
@@ -121,7 +121,7 @@
       "updatedAt": "2024-01-01"
     },
     {
-      "id": 11,
+      "id": "11",
       "code": "3000",
       "name": "Owner's Capital",
       "type": "Equity",
@@ -133,7 +133,7 @@
       "updatedAt": "2024-01-01"
     },
     {
-      "id": 12,
+      "id": "12",
       "code": "3001",
       "name": "Retained Earnings",
       "type": "Equity",
@@ -145,7 +145,7 @@
       "updatedAt": "2024-01-01"
     },
     {
-      "id": 13,
+      "id": "13",
       "code": "4000",
       "name": "Product Sales (Standard-Rated VAT)",
       "type": "Income",
@@ -157,7 +157,7 @@
       "updatedAt": "2024-01-01"
     },
     {
-      "id": 14,
+      "id": "14",
       "code": "4001",
       "name": "Service Income (Exempt)",
       "type": "Income",
@@ -169,7 +169,7 @@
       "updatedAt": "2024-01-01"
     },
     {
-      "id": 15,
+      "id": "15",
       "code": "5000",
       "name": "Salary Expense",
       "type": "Expense",
@@ -181,7 +181,7 @@
       "updatedAt": "2024-01-01"
     },
     {
-      "id": 16,
+      "id": "16",
       "code": "5001",
       "name": "Office Rent",
       "type": "Expense",
@@ -193,7 +193,7 @@
       "updatedAt": "2024-01-01"
     },
     {
-      "id": 17,
+      "id": "17",
       "code": "5002",
       "name": "Utility Bills",
       "type": "Expense",
@@ -205,19 +205,7 @@
       "updatedAt": "2024-01-01"
     },
     {
-      "id": 18,
-      "code": "5003",
-      "name": "Conveyance",
-      "type": "Expense",
-      "category": "Operating Expense",
-      "parentId": null,
-      "isActive": true,
-      "openingBalance": 0,
-      "createdAt": "2024-01-01",
-      "updatedAt": "2024-01-01"
-    },
-    {
-      "id": 19,
+      "id": "19",
       "code": "1501",
       "name": "Accumulated Depreciation",
       "type": "Asset",
@@ -227,11 +215,23 @@
       "openingBalance": -50000,
       "createdAt": "2024-01-01",
       "updatedAt": "2024-01-01"
+    },
+    {
+      "code": "9999",
+      "name": "hhhhh",
+      "type": "Liability",
+      "category": "Current Liability",
+      "isActive": true,
+      "openingBalance": 50000,
+      "parentId": null,
+      "createdAt": "2026-05-11T10:27:06.106Z",
+      "updatedAt": "2026-05-11T10:27:06.106Z",
+      "id": "L-x89gkz6oQ"
     }
   ],
   "vouchers": [
     {
-      "id": 1,
+      "id": "1",
       "voucherNo": "JV-2024-001",
       "voucherType": "Journal",
       "date": "2024-01-15",
@@ -271,7 +271,7 @@
       "createdAt": "2024-01-15T10:00:00Z"
     },
     {
-      "id": 2,
+      "id": "2",
       "voucherNo": "JV-2024-002",
       "voucherType": "Payment",
       "date": "2024-01-20",
@@ -304,7 +304,7 @@
   ],
   "parties": [
     {
-      "id": 1,
+      "id": "1",
       "type": "Customer",
       "name": "ABC Traders",
       "bin": "001234567-0202",
@@ -313,7 +313,7 @@
       "openingBalance": 0
     },
     {
-      "id": 2,
+      "id": "2",
       "type": "Supplier",
       "name": "XYZ Suppliers Ltd",
       "bin": "007654321-0202",
@@ -326,5 +326,6 @@
     "vatRate": 15,
     "vatRegistrationNumber": "BIN-001234567-0202",
     "fiscalYear": "2023-2024"
-  }
+  },
+  "$schema": "./node_modules/json-server/schema.json"
 }
