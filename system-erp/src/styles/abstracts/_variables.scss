@@ -1,0 +1,81 @@
+// ============================================================
+// Variables
+// ============================================================
+
+// Fonts
+$font-primary : 'DM Sans',
+sans-serif;
+$font-mono : 'DM Mono',
+monospace;
+
+// Brand Colors
+$primary : #1a3a5c;
+$primary-light : #2563a8;
+$primary-50 : #e8f0fa;
+$primary-100 : #c5d9f5;
+$accent : #e8a020;
+$accent-light : #fdf3dc;
+
+// Semantic Colors
+$success : #166534;
+$success-bg : #dcfce7;
+$success-border : #bbf7d0;
+$danger : #991b1b;
+$danger-bg : #fee2e2;
+$danger-border : #fca5a5;
+$warning : #854d0e;
+$warning-bg : #fef9c3;
+$warning-border : #fde047;
+$info : #075985;
+$info-bg : #e0f2fe;
+$info-border : #bae6fd;
+
+// Neutrals
+$text : #0f172a;
+$text-muted : #64748b;
+$text-light : #94a3b8;
+$surface : #ffffff;
+$bg : #f1f5f9;
+$border : #e2e8f0;
+$border-light : #f1f5f9;
+
+// Layout
+$sidebar-width : 260px;
+$topbar-height : 64px;
+$footer-height : 48px;
+
+// Border Radius
+$radius-sm : 4px;
+$radius-md : 8px;
+$radius-lg : 12px;
+$radius-xl : 16px;
+$radius-full : 9999px;
+
+// Shadows
+$shadow-sm : 0 1px 3px rgba(0, 0, 0, 0.04),
+0 1px 2px rgba(0, 0, 0, 0.06);
+$shadow-md : 0 4px 6px rgba(0, 0, 0, 0.05),
+0 2px 4px rgba(0, 0, 0, 0.06);
+$shadow-lg : 0 10px 15px rgba(0, 0, 0, 0.08),
+0 4px 6px rgba(0, 0, 0, 0.05);
+$shadow-xl : 0 20px 25px rgba(0, 0, 0, 0.10),
+0 10px 10px rgba(0, 0, 0, 0.04);
+
+// Transitions
+$transition : all 0.2s ease;
+$transition-fast: all 0.15s ease;
+$transition-slow: all 0.35s ease;
+
+// Z-index
+$z-sidebar : 1000;
+$z-topbar : 900;
+$z-modal : 1050;
+$z-tooltip : 1100;
+$z-toast : 1200;
+
+// Breakpoints
+$breakpoint-sm : 576px;
+$breakpoint-md : 768px;
+$breakpoint-lg : 992px;
+$breakpoint-xl : 1200px;
+$breakpoint-xxl : 1400px;
