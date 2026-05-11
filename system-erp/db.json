@@ -1,0 +1,126 @@
+{
+  "users": [
+    {
+      "id": "user-001",
+      "company_name": "Apex Finance Ltd",
+      "full_name": "Karim Uddin",
+      "email": "admin@apexfinance.com.bd",
+      "phone": "01711-234567",
+      "password": "Admin@1234",
+      "bin_number": "000999888-0201",
+      "role": "admin",
+      "is_active": true,
+      "created_at": "2024-01-01"
+    },
+    {
+      "id": "user-002",
+      "company_name": "Apex Finance Ltd",
+      "full_name": "Nasrin Akter",
+      "email": "accountant@apexfinance.com.bd",
+      "phone": "01819-345678",
+      "password": "User@1234",
+      "bin_number": "000999888-0201",
+      "role": "accountant",
+      "is_active": true,
+      "created_at": "2024-01-15"
+    }
+  ],
+  "accounts": [
+    { "id": "acc-001", "tenant_id": "t1", "code": "1001", "name": "Cash in Hand", "type": "asset", "parent_id": null, "is_active": true, "balance": 450000 },
+    { "id": "acc-002", "tenant_id": "t1", "code": "1002", "name": "Bank - Dutch-Bangla", "type": "asset", "parent_id": null, "is_active": true, "balance": 2850000 },
+    { "id": "acc-003", "tenant_id": "t1", "code": "1003", "name": "Accounts Receivable", "type": "asset", "parent_id": null, "is_active": true, "balance": 1200000 },
+    { "id": "acc-004", "tenant_id": "t1", "code": "1100", "name": "Inventory", "type": "asset", "parent_id": null, "is_active": true, "balance": 980000 },
+    { "id": "acc-005", "tenant_id": "t1", "code": "2001", "name": "Accounts Payable", "type": "liability", "parent_id": null, "is_active": true, "balance": 650000 },
+    { "id": "acc-006", "tenant_id": "t1", "code": "2002", "name": "VAT Payable", "type": "liability", "parent_id": null, "is_active": true, "balance": 125000 },
+    { "id": "acc-007", "tenant_id": "t1", "code": "2003", "name": "TDS Payable", "type": "liability", "parent_id": null, "is_active": true, "balance": 35000 },
+    { "id": "acc-008", "tenant_id": "t1", "code": "3001", "name": "Share Capital", "type": "equity", "parent_id": null, "is_active": true, "balance": 5000000 },
+    { "id": "acc-009", "tenant_id": "t1", "code": "3002", "name": "Retained Earnings", "type": "equity", "parent_id": null, "is_active": true, "balance": 1800000 },
+    { "id": "acc-010", "tenant_id": "t1", "code": "4001", "name": "Sales Revenue", "type": "revenue", "parent_id": null, "is_active": true, "balance": 3200000 },
+    { "id": "acc-011", "tenant_id": "t1", "code": "4002", "name": "Service Revenue", "type": "revenue", "parent_id": null, "is_active": true, "balance": 850000 },
+    { "id": "acc-012", "tenant_id": "t1", "code": "5001", "name": "Cost of Goods Sold", "type": "expense", "parent_id": null, "is_active": true, "balance": 1900000 },
+    { "id": "acc-013", "tenant_id": "t1", "code": "5002", "name": "Salary Expense", "type": "expense", "parent_id": null, "is_active": true, "balance": 620000 },
+    { "id": "acc-014", "tenant_id": "t1", "code": "5003", "name": "Rent Expense", "type": "expense", "parent_id": null, "is_active": true, "balance": 180000 },
+    { "id": "acc-015", "tenant_id": "t1", "code": "5004", "name": "Utility Expense", "type": "expense", "parent_id": null, "is_active": true, "balance": 45000 }
+  ],
+  "journal_entries": [
+    { "id": "je-001", "tenant_id": "t1", "reference": "JE-2024-0001", "entry_date": "2024-07-01", "type": "general", "status": "posted", "narration": "Opening balance entry", "created_by": "user-001" },
+    { "id": "je-002", "tenant_id": "t1", "reference": "JE-2024-0002", "entry_date": "2024-07-05", "type": "sales", "status": "posted", "narration": "Sales invoice INV-2024-001", "created_by": "user-001" },
+    { "id": "je-003", "tenant_id": "t1", "reference": "JE-2024-0003", "entry_date": "2024-07-10", "type": "purchase", "status": "posted", "narration": "Purchase bill BILL-2024-001", "created_by": "user-001" },
+    { "id": "je-004", "tenant_id": "t1", "reference": "JE-2024-0004", "entry_date": "2024-07-15", "type": "cash", "status": "draft", "narration": "Cash payment for utilities", "created_by": "user-001" },
+    { "id": "je-005", "tenant_id": "t1", "reference": "JE-2024-0005", "entry_date": "2024-07-20", "type": "bank", "status": "posted", "narration": "Bank receipt from customer", "created_by": "user-001" }
+  ],
+  "journal_lines": [
+    { "id": "jl-001", "journal_entry_id": "je-002", "account_id": "acc-003", "debit": 131200, "credit": 0, "narration": "AR from Apex Textiles" },
+    { "id": "jl-002", "journal_entry_id": "je-002", "account_id": "acc-010", "debit": 0, "credit": 114087, "narration": "Sales revenue" },
+    { "id": "jl-003", "journal_entry_id": "je-002", "account_id": "acc-006", "debit": 0, "credit": 17113, "narration": "VAT 15%" },
+    { "id": "jl-004", "journal_entry_id": "je-003", "account_id": "acc-012", "debit": 85000, "credit": 0, "narration": "COGS" },
+    { "id": "jl-005", "journal_entry_id": "je-003", "account_id": "acc-005", "debit": 0, "credit": 85000, "narration": "AP to vendor" }
+  ],
+  "parties": [
+    { "id": "party-001", "tenant_id": "t1", "party_type": "customer", "name": "Apex Textiles Ltd", "bin_number": "000123456-0101", "tin_number": "123456789", "email": "accounts@apextextiles.com.bd", "phone": "01711-234567", "address": "42 Mirpur Road, Dhaka", "credit_limit": 500000, "payment_terms": 30, "is_active": true },
+    { "id": "party-002", "tenant_id": "t1", "party_type": "customer", "name": "Bengal Garments Co.", "bin_number": "000234567-0102", "tin_number": "234567890", "email": "finance@bengalgarments.com", "phone": "01819-345678", "address": "78 Gulshan Ave, Dhaka", "credit_limit": 800000, "payment_terms": 45, "is_active": true },
+    { "id": "party-003", "tenant_id": "t1", "party_type": "customer", "name": "Dhaka Trading House", "bin_number": "000345678-0103", "tin_number": "345678901", "email": "info@dhakatrading.bd", "phone": "01912-456789", "address": "15 Motijheel C/A, Dhaka", "credit_limit": 300000, "payment_terms": 15, "is_active": true },
+    { "id": "party-004", "tenant_id": "t1", "party_type": "vendor", "name": "Chittagong Suppliers Ltd", "bin_number": "000456789-0104", "tin_number": "456789012", "email": "procurement@ctgsuppliers.com", "phone": "031-234567", "address": "22 Agrabad, Chittagong", "credit_limit": 0, "payment_terms": 30, "is_active": true },
+    { "id": "party-005", "tenant_id": "t1", "party_type": "vendor", "name": "BD Raw Materials Co.", "bin_number": "000567890-0105", "tin_number": "567890123", "email": "sales@bdrawmaterials.com", "phone": "01615-567890", "address": "5 BSCIC, Tongi", "credit_limit": 0, "payment_terms": 45, "is_active": true },
+    { "id": "party-006", "tenant_id": "t1", "party_type": "both", "name": "Sylhet Export House", "bin_number": "000678901-0106", "tin_number": "678901234", "email": "accounts@sylhetexport.com", "phone": "0821-234567", "address": "8 Zindabazar, Sylhet", "credit_limit": 200000, "payment_terms": 30, "is_active": true }
+  ],
+  "invoices": [
+    { "id": "inv-001", "tenant_id": "t1", "invoice_number": "INV-2024-001", "customer_id": "party-001", "invoice_date": "2024-07-05", "due_date": "2024-08-04", "status": "paid", "currency": "BDT", "subtotal": 114087, "discount_amount": 0, "taxable_amount": 114087, "vat_amount": 17113, "total_amount": 131200, "paid_amount": 131200 },
+    { "id": "inv-002", "tenant_id": "t1", "invoice_number": "INV-2024-002", "customer_id": "party-002", "invoice_date": "2024-07-12", "due_date": "2024-08-26", "status": "partial", "currency": "BDT", "subtotal": 250000, "discount_amount": 5000, "taxable_amount": 245000, "vat_amount": 36750, "total_amount": 281750, "paid_amount": 100000 },
+    { "id": "inv-003", "tenant_id": "t1", "invoice_number": "INV-2024-003", "customer_id": "party-003", "invoice_date": "2024-07-18", "due_date": "2024-08-02", "status": "overdue", "currency": "BDT", "subtotal": 85000, "discount_amount": 0, "taxable_amount": 85000, "vat_amount": 12750, "total_amount": 97750, "paid_amount": 0 },
+    { "id": "inv-004", "tenant_id": "t1", "invoice_number": "INV-2024-004", "customer_id": "party-001", "invoice_date": "2024-07-25", "due_date": "2024-08-24", "status": "sent", "currency": "BDT", "subtotal": 175000, "discount_amount": 10000, "taxable_amount": 165000, "vat_amount": 24750, "total_amount": 189750, "paid_amount": 0 },
+    { "id": "inv-005", "tenant_id": "t1", "invoice_number": "INV-2024-005", "customer_id": "party-006", "invoice_date": "2024-08-01", "due_date": "2024-08-31", "status": "draft", "currency": "BDT", "subtotal": 320000, "discount_amount": 0, "taxable_amount": 320000, "vat_amount": 48000, "total_amount": 368000, "paid_amount": 0 }
+  ],
+  "invoice_items": [
+    { "id": "ii-001", "invoice_id": "inv-001", "description": "Cotton Fabric (Grade A) - 500 meters", "quantity": 500, "unit_price": 228.17, "vat_rate": 15, "vat_amount": 17113, "line_total": 131200 },
+    { "id": "ii-002", "invoice_id": "inv-002", "description": "Polyester Thread - 200 spools", "quantity": 200, "unit_price": 1225, "vat_rate": 15, "vat_amount": 36750, "line_total": 281750 },
+    { "id": "ii-003", "invoice_id": "inv-003", "description": "Sewing Machine Accessories", "quantity": 1, "unit_price": 85000, "vat_rate": 15, "vat_amount": 12750, "line_total": 97750 },
+    { "id": "ii-004", "invoice_id": "inv-004", "description": "Export Quality Denim - 300 yards", "quantity": 300, "unit_price": 550, "vat_rate": 15, "vat_amount": 24750, "line_total": 189750 },
+    { "id": "ii-005", "invoice_id": "inv-005", "description": "Garment Labels & Tags - bulk", "quantity": 10000, "unit_price": 32, "vat_rate": 15, "vat_amount": 48000, "line_total": 368000 }
+  ],
+  "vendor_bills": [
+    { "id": "bill-001", "tenant_id": "t1", "bill_number": "BILL-2024-001", "vendor_id": "party-004", "bill_date": "2024-07-10", "due_date": "2024-08-09", "status": "paid", "subtotal": 85000, "vat_amount": 0, "tds_amount": 4250, "total_amount": 80750, "paid_amount": 80750 },
+    { "id": "bill-002", "tenant_id": "t1", "bill_number": "BILL-2024-002", "vendor_id": "party-005", "bill_date": "2024-07-15", "due_date": "2024-08-29", "status": "received", "subtotal": 145000, "vat_amount": 21750, "tds_amount": 7250, "total_amount": 159500, "paid_amount": 0 },
+    { "id": "bill-003", "tenant_id": "t1", "bill_number": "BILL-2024-003", "vendor_id": "party-004", "bill_date": "2024-07-28", "due_date": "2024-08-27", "status": "partial", "subtotal": 220000, "vat_amount": 33000, "tds_amount": 11000, "total_amount": 242000, "paid_amount": 100000 }
+  ],
+  "bank_accounts": [
+    { "id": "bank-001", "tenant_id": "t1", "account_name": "Dutch-Bangla Bank - Current", "account_number": "1041000123456", "bank_name": "Dutch-Bangla Bank Ltd", "branch_name": "Gulshan Branch", "account_type": "current", "currency": "BDT", "current_balance": 2850000, "last_reconciled": "2024-07-31" },
+    { "id": "bank-002", "tenant_id": "t1", "account_name": "BRAC Bank - Savings", "account_number": "1501000789012", "bank_name": "BRAC Bank Ltd", "branch_name": "Motijheel Branch", "account_type": "savings", "currency": "BDT", "current_balance": 1250000, "last_reconciled": "2024-07-31" },
+    { "id": "bank-003", "tenant_id": "t1", "account_name": "bKash Business", "account_number": "01700000001", "bank_name": "bKash Ltd", "branch_name": "Mobile Banking", "account_type": "mobile_wallet", "currency": "BDT", "current_balance": 125000, "last_reconciled": "2024-07-31" }
+  ],
+  "bank_transactions": [
+    { "id": "bt-001", "bank_account_id": "bank-001", "transaction_date": "2024-07-05", "type": "credit", "amount": 131200, "description": "Payment from Apex Textiles", "reference": "TRF-2024-001", "is_reconciled": true },
+    { "id": "bt-002", "bank_account_id": "bank-001", "transaction_date": "2024-07-12", "type": "debit", "amount": 80750, "description": "Payment to Chittagong Suppliers", "reference": "CHQ-001234", "is_reconciled": true },
+    { "id": "bt-003", "bank_account_id": "bank-002", "transaction_date": "2024-07-18", "type": "credit", "amount": 100000, "description": "Partial payment Bengal Garments", "reference": "TRF-2024-002", "is_reconciled": false },
+    { "id": "bt-004", "bank_account_id": "bank-003", "transaction_date": "2024-07-22", "type": "credit", "amount": 25000, "description": "bKash collection", "reference": "BKS-7823451", "is_reconciled": false },
+    { "id": "bt-005", "bank_account_id": "bank-001", "transaction_date": "2024-07-30", "type": "debit", "amount": 45000, "description": "Utility bills payment", "reference": "TRF-2024-003", "is_reconciled": false }
+  ],
+  "payments": [
+    { "id": "pay-001", "tenant_id": "t1", "payment_number": "PAY-2024-001", "direction": "received", "method": "bank_transfer", "party_id": "party-001", "bank_account_id": "bank-001", "payment_date": "2024-07-05", "amount": 131200, "status": "completed", "invoice_id": "inv-001", "gateway_ref": "TRF-2024-001" },
+    { "id": "pay-002", "tenant_id": "t1", "payment_number": "PAY-2024-002", "direction": "sent", "method": "cheque", "party_id": "party-004", "bank_account_id": "bank-001", "payment_date": "2024-07-12", "amount": 80750, "status": "completed", "invoice_id": null, "gateway_ref": "CHQ-001234" },
+    { "id": "pay-003", "tenant_id": "t1", "payment_number": "PAY-2024-003", "direction": "received", "method": "bank_transfer", "party_id": "party-002", "bank_account_id": "bank-002", "payment_date": "2024-07-18", "amount": 100000, "status": "completed", "invoice_id": "inv-002", "gateway_ref": "TRF-2024-002" },
+    { "id": "pay-004", "tenant_id": "t1", "payment_number": "PAY-2024-004", "direction": "received", "method": "bkash", "party_id": "party-003", "bank_account_id": "bank-003", "payment_date": "2024-07-22", "amount": 25000, "status": "completed", "invoice_id": null, "gateway_ref": "BKS-7823451" }
+  ],
+  "vat_entries": [
+    { "id": "vat-001", "tenant_id": "t1", "bin_number": "000999888-0201", "vat_period": "2024-07", "entry_type": "output", "source_type": "invoice", "source_id": "inv-001", "taxable_amount": 114087, "vat_rate": 15, "vat_amount": 17113, "musak_form": "6.3", "is_filed": true },
+    { "id": "vat-002", "tenant_id": "t1", "bin_number": "000999888-0201", "vat_period": "2024-07", "entry_type": "output", "source_type": "invoice", "source_id": "inv-002", "taxable_amount": 245000, "vat_rate": 15, "vat_amount": 36750, "musak_form": "6.3", "is_filed": false },
+    { "id": "vat-003", "tenant_id": "t1", "bin_number": "000999888-0201", "vat_period": "2024-07", "entry_type": "input", "source_type": "bill", "source_id": "bill-002", "taxable_amount": 145000, "vat_rate": 15, "vat_amount": 21750, "musak_form": "6.7", "is_filed": false }
+  ],
+  "tds_entries": [
+    { "id": "tds-001", "tenant_id": "t1", "vendor_bill_id": "bill-001", "vendor_id": "party-004", "tds_section": "Section 52", "base_amount": 85000, "tds_rate": 5, "tds_amount": 4250, "tds_period": "2024-07", "is_deposited": true },
+    { "id": "tds-002", "tenant_id": "t1", "vendor_bill_id": "bill-002", "vendor_id": "party-005", "tds_section": "Section 52", "base_amount": 145000, "tds_rate": 5, "tds_amount": 7250, "tds_period": "2024-07", "is_deposited": false },
+    { "id": "tds-003", "tenant_id": "t1", "vendor_bill_id": "bill-003", "vendor_id": "party-004", "tds_section": "Section 53", "base_amount": 220000, "tds_rate": 5, "tds_amount": 11000, "tds_period": "2024-07", "is_deposited": false }
+  ],
+  "expense_claims": [
+    { "id": "exp-001", "tenant_id": "t1", "claim_number": "EXP-2024-001", "employee_id": "emp-001", "employee_name": "Karim Uddin", "claim_date": "2024-07-10", "total_amount": 12500, "status": "approved" },
+    { "id": "exp-002", "tenant_id": "t1", "claim_number": "EXP-2024-002", "employee_id": "emp-002", "employee_name": "Nasrin Akter", "claim_date": "2024-07-20", "total_amount": 8750, "status": "submitted" },
+    { "id": "exp-003", "tenant_id": "t1", "claim_number": "EXP-2024-003", "employee_id": "emp-003", "employee_name": "Rafiqul Islam", "claim_date": "2024-07-28", "total_amount": 5200, "status": "draft" }
+  ],
+  "ledger_entries": [
+    { "id": "led-001", "tenant_id": "t1", "account_id": "acc-003", "date": "2024-07-05", "description": "Sales to Apex Textiles", "debit": 131200, "credit": 0, "balance": 131200, "journal_entry_id": "je-002" },
+    { "id": "led-002", "tenant_id": "t1", "account_id": "acc-010", "date": "2024-07-05", "description": "Sales Revenue", "debit": 0, "credit": 114087, "balance": 114087, "journal_entry_id": "je-002" },
+    { "id": "led-003", "tenant_id": "t1", "account_id": "acc-006", "date": "2024-07-05", "description": "VAT on Sales", "debit": 0, "credit": 17113, "balance": 17113, "journal_entry_id": "je-002" },
+    { "id": "led-004", "tenant_id": "t1", "account_id": "acc-012", "date": "2024-07-10", "description": "COGS - Purchase", "debit": 85000, "credit": 0, "balance": 85000, "journal_entry_id": "je-003" },
+    { "id": "led-005", "tenant_id": "t1", "account_id": "acc-005", "date": "2024-07-10", "description": "AP to Chittagong Suppliers", "debit": 0, "credit": 85000, "balance": 85000, "journal_entry_id": "je-003" }
+  ]
+}
