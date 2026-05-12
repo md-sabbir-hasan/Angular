@@ -6,7 +6,7 @@ export type ExpenseStatus =
   | 'paid';
 
 export interface ExpenseClaim {
-  id: string;
+  id?: string;
   tenant_id: string;
   claim_number: string;
   employee_id: string;
@@ -18,7 +18,7 @@ export interface ExpenseClaim {
 }
 
 export interface ExpenseItem {
-  id: string;
+  id?: string;
   claim_id: string;
   expense_date: string;
   category: string;
@@ -28,6 +28,7 @@ export interface ExpenseItem {
 }
 
 export interface ExpenseFormData {
+   employee_id?: string;
   employee_name: string;
   claim_date: string;
   total_amount: number;

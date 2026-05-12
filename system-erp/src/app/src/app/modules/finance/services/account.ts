@@ -107,4 +107,5 @@ export class AccountService {
       a.type.toLowerCase().includes(q)
     );
   }
+  
 }
