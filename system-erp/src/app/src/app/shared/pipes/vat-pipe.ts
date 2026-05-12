@@ -1,10 +1,12 @@
 import { Pipe, PipeTransform } from '@angular/core';
+import { calculateVat } from '../../core/utils/currency.util';
 
 @Pipe({
-  name: 'vat',
+  name: 'vatAmount',
+  standalone: true
 })
 export class VatPipe implements PipeTransform {
-  transform(value: unknown, ...args: unknown[]): unknown {
-    return null;
+  transform(amount: number, rate: number = 15): number {
+    return calculateVat(amount, rate);
   }
 }
