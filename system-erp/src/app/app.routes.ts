@@ -60,13 +60,13 @@ export const routes: Routes = [
                         path: 'dashboard',
                         loadComponent: () =>
                             import('./src/app/modules/finance/pages/dashboard')
-                                .then(m => m.Dashboard)
+                                .then(m => m.DashboardComponent)
                     },
                     {
                         path: 'chart-of-accounts',
                         loadComponent: () =>
                             import('./src/app/modules/finance/pages/chart-of-accounts')
-                                .then(m => m.ChartOfAccounts)
+                                .then(m => m.ChartOfAccountsComponent)
                     },
                     {
                         path: 'journal-entry',
