@@ -10,7 +10,7 @@ export const routes: Routes = [
         path: 'auth',
         loadComponent: () =>
             import('./src/app/layout/auth-layout')
-                .then(m => m.AuthLayout),
+                .then(m => m.AuthLayoutComponent),
         children: [
             {
                 path: '',
@@ -21,19 +21,19 @@ export const routes: Routes = [
                 path: 'login',
                 loadComponent: () =>
                     import('./src/app/modules/auth/pages/login')
-                        .then(m => m.Login)
+                        .then(m => m.LoginComponent)
             },
             {
                 path: 'register',
                 loadComponent: () =>
                     import('./src/app/modules/auth/pages/register')
-                        .then(m => m.Register)
+                        .then(m => m.RegisterComponent)
             },
             {
                 path: 'forgot-password',
                 loadComponent: () =>
                     import('./src/app/modules/auth/pages/forgot-password')
-                        .then(m => m.ForgotPassword)
+                        .then(m => m.ForgotPasswordComponent)
             }
         ]
     },
@@ -41,7 +41,7 @@ export const routes: Routes = [
         path: '',
         loadComponent: () =>
             import('./src/app/layout/main-layout')
-                .then(m => m.MainLayout),
+                .then(m => m.MainLayoutComponent),
         children: [
             {
                 path: '',

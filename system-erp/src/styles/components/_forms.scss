@@ -1,0 +1,124 @@
+// ============================================================
+// Forms
+// ============================================================
+
+.form-group {
+  margin-bottom: 16px;
+
+  label {
+    display: block;
+    font-size: 12px;
+    font-weight: 600;
+    color: $text-muted;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+    margin-bottom: 6px;
+
+    .required { color: $danger; margin-left: 2px; }
+  }
+
+  .form-control,
+  .form-select { @include input-base; }
+
+  textarea.form-control {
+    resize: vertical;
+    min-height: 80px;
+  }
+
+  .form-hint {
+    font-size: 11.5px;
+    color: $text-muted;
+    margin-top: 4px;
+  }
+
+  .form-error {
+    font-size: 11.5px;
+    color: $danger;
+    margin-top: 4px;
+    @include flex-start;
+    gap: 4px;
+  }
+
+  &.has-error {
+    .form-control, .form-select {
+      border-color: $danger;
+      &:focus { box-shadow: 0 0 0 3px rgba(153,27,27,0.1); }
+    }
+  }
+}
+
+// Search box
+.search-box {
+  position: relative;
+
+  i {
+    position: absolute;
+    left: 10px; top: 50%;
+    transform: translateY(-50%);
+    color: $text-muted;
+    font-size: 14px;
+    pointer-events: none;
+  }
+
+  input {
+    @include input-base;
+    padding-left: 34px;
+    height: 36px;
+    background: $bg;
+
+    &:focus { background: $surface; }
+  }
+}
+
+// Input group with currency prefix
+.input-currency {
+  position: relative;
+
+  .currency-prefix {
+    position: absolute;
+    left: 12px; top: 50%;
+    transform: translateY(-50%);
+    font-family: $font-mono;
+    font-size: 13px;
+    color: $text-muted;
+    font-weight: 500;
+    pointer-events: none;
+  }
+
+  input { @include input-base; padding-left: 28px; }
+}
+
+// Checkbox / Radio
+.form-check-erp {
+  @include flex-start;
+  gap: 8px;
+  cursor: pointer;
+
+  input[type="checkbox"],
+  input[type="radio"] {
+    width: 16px; height: 16px;
+    accent-color: $primary-light;
+    cursor: pointer;
+  }
+
+  label {
+    font-size: 13.5px;
+    color: $text;
+    cursor: pointer;
+    margin: 0;
+    text-transform: none;
+    letter-spacing: 0;
+    font-weight: 400;
+  }
+}
+
+// Filter bar
+.filter-bar {
+  @include flex-between;
+  gap: 12px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+
+  &__left  { @include flex-start; gap: 8px; flex-wrap: wrap; }
+  &__right { @include flex-start; gap: 8px; flex-wrap: wrap; }
+}

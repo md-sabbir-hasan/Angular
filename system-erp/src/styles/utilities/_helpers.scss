@@ -1,0 +1,80 @@
+// ============================================================
+// Helper Utilities
+// ============================================================
+
+// Display
+.d-flex        { display: flex; }
+.d-grid        { display: grid; }
+.d-block       { display: block; }
+.d-inline      { display: inline; }
+.d-inline-flex { display: inline-flex; }
+.d-none        { display: none; }
+
+// Flex
+.flex-1        { flex: 1; }
+.flex-center   { @include flex-center; }
+.flex-between  { @include flex-between; }
+.flex-start    { @include flex-start; }
+.flex-wrap     { flex-wrap: wrap; }
+.flex-col      { flex-direction: column; }
+.align-start   { align-items: flex-start; }
+.align-end     { align-items: flex-end; }
+
+// Width / Height
+.w-full        { width: 100%; }
+.h-full        { height: 100%; }
+.w-auto        { width: auto; }
+
+// Text alignment
+.text-left     { text-align: left; }
+.text-center   { text-align: center; }
+.text-right    { text-align: right; }
+
+// Overflow
+.overflow-hidden { overflow: hidden; }
+.overflow-auto   { overflow: auto; }
+.truncate        { @include truncate; }
+
+// Cursor
+.cursor-pointer  { cursor: pointer; }
+.cursor-default  { cursor: default; }
+.user-select-none { user-select: none; }
+
+// Border
+.border-0        { border: none !important; }
+.rounded         { border-radius: $radius-md; }
+.rounded-lg      { border-radius: $radius-lg; }
+.rounded-full    { border-radius: $radius-full; }
+
+// Background helpers
+.bg-surface      { background: $surface; }
+.bg-app          { background: $bg; }
+.bg-primary-soft { background: $primary-50; }
+.bg-success-soft { background: $success-bg; }
+.bg-danger-soft  { background: $danger-bg; }
+.bg-warning-soft { background: $warning-bg; }
+
+// Shadow
+.shadow-sm       { box-shadow: $shadow-sm; }
+.shadow-md       { box-shadow: $shadow-md; }
+.shadow-lg       { box-shadow: $shadow-lg; }
+
+// Position
+.relative        { position: relative; }
+.absolute        { position: absolute; }
+.sticky-top      { position: sticky; top: 0; }
+
+// Opacity
+.opacity-0       { opacity: 0; }
+.opacity-50      { opacity: 0.5; }
+.opacity-75      { opacity: 0.75; }
+
+// Misc
+.no-wrap         { white-space: nowrap; }
+.pointer-events-none { pointer-events: none; }
+.list-none       { list-style: none; margin: 0; padding: 0; }
+.visually-hidden {
+  position: absolute; width: 1px; height: 1px;
+  padding: 0; margin: -1px; overflow: hidden;
+  clip: rect(0,0,0,0); border: 0;
+}

@@ -1,0 +1,118 @@
+// ============================================================
+// Finance Pages
+// ============================================================
+
+// Journal Entry
+.journal-form {
+  .je-lines-table {
+    border: 1px solid $border;
+    border-radius: $radius-md;
+    overflow: hidden;
+
+    thead th { background: $bg; font-size: 11px; padding: 8px 12px; }
+    tbody td { padding: 6px 8px; border-bottom: 1px solid $border-light; }
+
+    .line-input {
+      @include input-base;
+      padding: 6px 10px;
+      font-size: 13px;
+      border-radius: $radius-sm;
+    }
+
+    tfoot td {
+      padding: 10px 12px;
+      background: $bg;
+      font-weight: 600;
+      font-family: $font-mono;
+      font-size: 13px;
+      border-top: 2px solid $border;
+    }
+  }
+
+  .balance-indicator {
+    @include flex-between;
+    padding: 10px 14px;
+    border-radius: $radius-md;
+    font-size: 13px;
+    font-weight: 500;
+    margin-top: 8px;
+
+    &.balanced   { background: $success-bg; color: $success; }
+    &.unbalanced { background: $danger-bg; color: $danger; }
+  }
+}
+
+// Invoice
+.invoice-preview {
+  border: 1px solid $border;
+  border-radius: $radius-lg;
+  overflow: hidden;
+
+  &__header {
+    background: $primary;
+    color: #fff;
+    padding: 24px;
+    @include flex-between;
+
+    .inv-title { font-size: 28px; font-weight: 700; letter-spacing: -1px; opacity: 0.9; }
+    .inv-number { font-family: $font-mono; font-size: 14px; margin-top: 4px; }
+  }
+
+  &__body { padding: 24px; }
+  &__footer {
+    padding: 16px 24px;
+    background: $bg;
+    font-size: 12px;
+    color: $text-muted;
+    border-top: 1px solid $border;
+  }
+}
+
+// Ledger
+.ledger-table {
+  .debit-row td  { background: rgba(220, 252, 231, 0.3); }
+  .credit-row td { background: rgba(224, 242, 254, 0.3); }
+  .balance-col   { font-family: $font-mono; font-weight: 600; }
+}
+
+// Trial Balance
+.trial-balance {
+  .account-group-header {
+    background: $primary-50;
+    font-weight: 600;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: $primary-light;
+
+    td { padding: 8px 14px; }
+  }
+
+  .total-row {
+    background: $bg;
+    font-weight: 700;
+    border-top: 2px solid $border;
+
+    td { padding: 12px 14px; font-family: $font-mono; }
+  }
+}
+
+// VAT
+.vat-summary-card {
+  @include card-base;
+  padding: 20px;
+
+  .vat-period { font-size: 12px; color: $text-muted; margin-bottom: 4px; }
+  .vat-title  { font-size: 15px; font-weight: 600; margin-bottom: 16px; }
+
+  .vat-row {
+    @include flex-between;
+    padding: 8px 0;
+    font-size: 13.5px;
+    border-bottom: 1px dashed $border-light;
+
+    &:last-child { border-bottom: none; }
+    &.payable { font-weight: 700; color: $danger; font-size: 15px; padding-top: 12px; border-top: 2px solid $border; }
+    &.credit  { font-weight: 700; color: $success; font-size: 15px; }
+  }
+}

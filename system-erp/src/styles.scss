@@ -1,45 +1,45 @@
-// // ============================================================
-// // FinanceERP — Master Stylesheet
-// // ============================================================
+// ============================================================
+// FinanceERP — Master Stylesheet
+// ============================================================
 
-// // Abstracts
-// @import 'styles/abstracts/variables';
-// @import 'styles/abstracts/mixins';
-// @import 'styles/abstracts/functions';
+// Abstracts
+@import 'styles/abstracts/variables';
+@import 'styles/abstracts/mixins';
+@import 'styles/abstracts/functions';
 
-// // Base
-// @import 'styles/base/reset';
-// @import 'styles/base/typography';
-// @import 'styles/base/animations';
+// Base
+@import 'styles/base/reset';
+@import 'styles/base/typography';
+@import 'styles/base/animations';
 
-// // Layout
-// @import 'styles/layout/sidebar';
-// @import 'styles/layout/navbar';
-// @import 'styles/layout/footer';
-// @import 'styles/layout/grid';
+// Layout
+@import 'styles/layout/sidebar';
+@import 'styles/layout/navbar';
+@import 'styles/layout/footer';
+@import 'styles/layout/grid';
 
-// // Components
-// @import 'styles/components/buttons';
-// @import 'styles/components/cards';
-// @import 'styles/components/tables';
-// @import 'styles/components/forms';
-// @import 'styles/components/badges';
-// @import 'styles/components/modals';
-// @import 'styles/components/alerts';
-// @import 'styles/components/loader';
+// Components
+@import 'styles/components/buttons';
+@import 'styles/components/cards';
+@import 'styles/components/tables';
+@import 'styles/components/forms';
+@import 'styles/components/badges';
+@import 'styles/components/modals';
+@import 'styles/components/alerts';
+@import 'styles/components/loader';
 
-// // Pages
-// @import 'styles/pages/auth';
-// @import 'styles/pages/dashboard';
-// @import 'styles/pages/finance';
+// Pages
+@import 'styles/pages/auth';
+@import 'styles/pages/dashboard';
+@import 'styles/pages/finance';
 
-// // Themes
-// @import 'styles/themes/default';
+// Themes
+@import 'styles/themes/default';
 
-// // Utilities
-// @import 'styles/utilities/spacing';
-// @import 'styles/utilities/helpers';
+// Utilities
+@import 'styles/utilities/spacing';
+@import 'styles/utilities/helpers';
 
-// // Bootstrap
-// @import 'bootstrap/dist/css/bootstrap.min.css';
-// @import 'bootstrap-icons/font/bootstrap-icons.css';
+// Bootstrap
+@import 'bootstrap/dist/css/bootstrap.min.css';
+@import 'bootstrap-icons/font/bootstrap-icons.css';
