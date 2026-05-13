@@ -354,4 +354,81 @@ create(data: ExpenseFormData): Observable<ExpenseClaim> {
     const timestamp = Date.now().toString().slice(-6);
     return `EXP-${date.getFullYear()}${String(date.getMonth() + 1).padStart(2, '0')}-${timestamp}`;
   }
+
+  // ── Get summary ────────────────────────────────────────────
+getSummary(expenses: ExpenseClaim[]) {
+  return {
+    total: expenses.length,
+
+    pending: expenses.filter(
+      e => e.status === 'submitted' || e.status === 'draft'
+    ).length,
+
+    approved: expenses.filter(
+      e => e.status === 'approved'
+    ).length,
+
+    totalAmount: expenses.reduce(
+      (sum, e) => sum + e.total_amount,
+      0
+    ),
+
+    pendingAmount: expenses
+      .filter(
+        e => e.status === 'submitted' || e.status === 'draft'
+      )
+      .reduce(
+        (sum, e) => sum + e.total_amount,
+        0
+      )
+  };
+}
+
+// ── Generic status update ──────────────────────────────────
+updateStatus(
+  id: string,
+  status: ExpenseStatus
+): Observable<ExpenseClaim> {
+
+  return this.http.patch<ExpenseClaim>(
+    `${API_ENDPOINTS.EXPENSE_CLAIMS}/${id}`,
+    { status }
+  ).pipe(
+
+    tap(expense => {
+
+      const current = this.expensesSubject.value;
+
+      const index = current.findIndex(
+        e => e.id === id
+      );
+
+      if (index > -1) {
+        current[index] = expense;
+        this.expensesSubject.next([...current]);
+      }
+
+      if (this.selectedExpenseSubject.value?.id === id) {
+        this.selectedExpenseSubject.next(expense);
+      }
+
+    }),
+
+    tap(() => {
+      this.notification.success(
+        `Expense claim marked as ${status}`
+      );
+    }),
+
+    catchError(err => {
+
+      this.notification.error(
+        'Failed to update expense status'
+      );
+
+      return throwError(() => err);
+
+    })
+  );
+}
 }

@@ -6,7 +6,7 @@ export type ExpenseStatus =
   | 'paid';
 
 export interface ExpenseClaim {
-  id?: string;
+  id: string;
   tenant_id: string;
   claim_number: string;
   employee_id: string;
