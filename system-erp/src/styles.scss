@@ -1,43 +1,43 @@
-// // ============================================================
-// // FinanceERP — Master Stylesheet
-// // Import order matters — abstracts first, then base, layout,
-// // components, pages, themes, utilities
-// // ============================================================
+// ============================================================
+// FinanceERP — Master Stylesheet
+// Import order matters — abstracts first, then base, layout,
+// components, pages, themes, utilities
+// ============================================================
 
-// // Abstracts (variables, mixins, functions — no CSS output)
-// @use 'styles/abstracts/variables' as *;
-// @use 'styles/abstracts/mixins' as *;
-// @use 'styles/abstracts/functions' as *;
+// Abstracts (variables, mixins, functions — no CSS output)
+@use 'styles/abstracts/variables' as *;
+@use 'styles/abstracts/mixins' as *;
+@use 'styles/abstracts/functions' as *;
 
-// // Base
-// @use 'styles/base/reset';
-// @use 'styles/base/typography';
-// @use 'styles/base/animations';
+// Base
+@use 'styles/base/reset';
+@use 'styles/base/typography';
+@use 'styles/base/animations';
 
-// // Layout
-// @use 'styles/layout/sidebar';
-// @use 'styles/layout/navbar';
-// @use 'styles/layout/footer';
-// @use 'styles/layout/grid';
+// Layout
+@use 'styles/layout/sidebar';
+@use 'styles/layout/navbar';
+@use 'styles/layout/footer';
+@use 'styles/layout/grid';
 
-// // Components
-// @use 'styles/components/buttons';
-// @use 'styles/components/cards';
-// @use 'styles/components/tables';
-// @use 'styles/components/forms';
-// @use 'styles/components/badges';
-// @use 'styles/components/modals';
-// @use 'styles/components/alerts';
-// @use 'styles/components/loader';
+// Components
+@use 'styles/components/buttons';
+@use 'styles/components/cards';
+@use 'styles/components/tables';
+@use 'styles/components/forms';
+@use 'styles/components/badges';
+@use 'styles/components/modals';
+@use 'styles/components/alerts';
+@use 'styles/components/loader';
 
-// // Pages
-// @use 'styles/pages/auth';
-// @use 'styles/pages/dashboard';
-// @use 'styles/pages/finance';
+// Pages
+@use 'styles/pages/auth';
+@use 'styles/pages/dashboard';
+@use 'styles/pages/finance';
 
-// // Themes
-// @use 'styles/themes/default';
+// Themes
+@use 'styles/themes/default';
 
-// // Utilities
-// @use 'styles/utilities/spacing';
-// @use 'styles/utilities/helpers';
+// Utilities
+@use 'styles/utilities/spacing';
+@use 'styles/utilities/helpers';

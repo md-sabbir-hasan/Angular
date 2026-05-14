@@ -115,9 +115,10 @@
   color: $primary;
   font-weight: 600;
 
-  &:hover {
-    background: darken($accent, 8%);
-  }
+
+// &:hover {
+//     background: color.adjust($accent, $lightness: -8%);
+//   }
 }
 
 .btn-icon {

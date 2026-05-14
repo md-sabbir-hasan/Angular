@@ -23,6 +23,18 @@
       "role": "accountant",
       "is_active": true,
       "created_at": "2024-01-15"
+    },
+    {
+      "id": "lerpvyf5kbY",
+      "company_name": "SABBIR IMPORT",
+      "full_name": "SABBIR HASAN",
+      "email": "ss.sabirhasan@gmail.com",
+      "phone": "01704323216",
+      "password": "12345678",
+      "bin_number": "250000",
+      "role": "accountant",
+      "is_active": true,
+      "created_at": "2026-05-14"
     }
   ],
   "accounts": [
@@ -214,7 +226,7 @@
       "reference": "JE-2024-0004",
       "entry_date": "2024-07-15",
       "type": "cash",
-      "status": "draft",
+      "status": "posted",
       "narration": "Cash payment for utilities",
       "created_by": "user-001"
     },
@@ -234,7 +246,7 @@
       "reference": "JE-2026-3647",
       "entry_date": "2026-05-14",
       "type": "cash",
-      "status": "draft",
+      "status": "posted",
       "narration": "hjkfgdf",
       "created_by": "user-001"
     },
@@ -244,6 +256,16 @@
       "reference": "JE-2026-6968",
       "entry_date": "2026-05-21",
       "type": "payroll",
+      "status": "posted",
+      "narration": "sABBIr",
+      "created_by": "user-001"
+    },
+    {
+      "id": "MLlKpy_F9jM",
+      "tenant_id": "t1",
+      "reference": "JE-2026-9982",
+      "entry_date": "2026-05-21",
+      "type": "bank",
       "status": "posted",
       "narration": "sABBIr",
       "created_by": "user-001"
@@ -320,6 +342,22 @@
       "account_id": "acc-002",
       "debit": 0,
       "credit": 5000,
+      "narration": ""
+    },
+    {
+      "id": "cSBF6U9EgzI",
+      "journal_entry_id": "MLlKpy_F9jM",
+      "account_id": "acc-004",
+      "debit": 0,
+      "credit": 500000,
+      "narration": ""
+    },
+    {
+      "id": "iLO34bdgO94",
+      "journal_entry_id": "MLlKpy_F9jM",
+      "account_id": "acc-007",
+      "debit": 500000,
+      "credit": 0,
       "narration": ""
     }
   ],
@@ -433,7 +471,7 @@
       "customer_id": "party-002",
       "invoice_date": "2024-07-12",
       "due_date": "2024-08-26",
-      "status": "partial",
+      "status": "paid",
       "currency": "BDT",
       "subtotal": 250000,
       "discount_amount": 5000,
@@ -449,7 +487,7 @@
       "customer_id": "party-003",
       "invoice_date": "2024-07-18",
       "due_date": "2024-08-02",
-      "status": "overdue",
+      "status": "paid",
       "currency": "BDT",
       "subtotal": 85000,
       "discount_amount": 0,
@@ -465,7 +503,7 @@
       "customer_id": "party-001",
       "invoice_date": "2024-07-25",
       "due_date": "2024-08-24",
-      "status": "sent",
+      "status": "paid",
       "currency": "BDT",
       "subtotal": 175000,
       "discount_amount": 10000,
@@ -481,13 +519,61 @@
       "customer_id": "party-006",
       "invoice_date": "2024-08-01",
       "due_date": "2024-08-31",
-      "status": "draft",
+      "status": "paid",
       "currency": "BDT",
       "subtotal": 320000,
       "discount_amount": 0,
       "taxable_amount": 320000,
       "vat_amount": 48000,
       "total_amount": 368000,
+      "paid_amount": 0
+    },
+    {
+      "id": "AnfGUgLQ-2M",
+      "tenant_id": "t1",
+      "invoice_number": "INV-2026-7558",
+      "customer_id": "party-001",
+      "invoice_date": "2026-05-14",
+      "due_date": "2026-06-13",
+      "status": "paid",
+      "currency": "BDT",
+      "subtotal": 250000,
+      "discount_amount": 0.02,
+      "taxable_amount": 249999.98,
+      "vat_amount": 37500,
+      "total_amount": 287499.98,
+      "paid_amount": 0
+    },
+    {
+      "id": "vWZi5hCAZLE",
+      "tenant_id": "t1",
+      "invoice_number": "INV-2026-7934",
+      "customer_id": "party-002",
+      "invoice_date": "2026-05-20",
+      "due_date": "2026-07-17",
+      "status": "paid",
+      "currency": "USD",
+      "subtotal": 7850,
+      "discount_amount": 0,
+      "taxable_amount": 7850,
+      "vat_amount": 392.5,
+      "total_amount": 8242.5,
+      "paid_amount": 0
+    },
+    {
+      "id": "RjsdjmcNnMs",
+      "tenant_id": "t1",
+      "invoice_number": "INV-2026-9544",
+      "customer_id": "party-006",
+      "invoice_date": "2026-05-13",
+      "due_date": "2026-06-15",
+      "status": "paid",
+      "currency": "BDT",
+      "subtotal": 200000,
+      "discount_amount": 0.05,
+      "taxable_amount": 199999.95,
+      "vat_amount": 30000,
+      "total_amount": 229999.95,
       "paid_amount": 0
     }
   ],

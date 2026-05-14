@@ -103,6 +103,12 @@ export const routes: Routes = [
                         loadComponent: () =>
                             import('./src/app/modules/finance/pages/reports')
                                 .then(m => m.ReportsComponent)
+                    },
+                    {
+                        path: 'reports',
+                        loadComponent: () =>
+                            import('./src/app/modules/finance/pages/chart-of-accounts')
+                                .then(m => m.ChartOfAccountsComponent)
                     }
                 ]
             },
