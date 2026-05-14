@@ -1,6 +1,8 @@
 // ============================================================
 // Navbar / Topbar
 // ============================================================
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
 
 .topbar {
   height: $topbar-height;
@@ -19,7 +21,8 @@
     gap: 12px;
 
     .toggle-btn {
-      width: 36px; height: 36px;
+      width: 36px;
+      height: 36px;
       @include flex-center;
       border-radius: $radius-md;
       color: $text-muted;
@@ -27,22 +30,9 @@
       transition: $transition-fast;
       cursor: pointer;
 
-      &:hover { background: $bg; color: $text; }
-    }
-
-    .breadcrumb-nav {
-      @include flex-start;
-      gap: 6px;
-      font-size: 13px;
-
-      .bc-item {
-        color: $text-muted;
-        &.active { color: $text; font-weight: 500; }
-      }
-
-      .bc-sep {
-        color: $text-light;
-        font-size: 11px;
+      &:hover {
+        background: $bg;
+        color: $text;
       }
     }
   }
@@ -62,7 +52,8 @@
     }
 
     .icon-btn {
-      width: 36px; height: 36px;
+      width: 36px;
+      height: 36px;
       @include flex-center;
       border-radius: $radius-md;
       color: $text-muted;
@@ -71,12 +62,17 @@
       cursor: pointer;
       position: relative;
 
-      &:hover { background: $bg; color: $text; }
+      &:hover {
+        background: $bg;
+        color: $text;
+      }
 
       .notif-dot {
         position: absolute;
-        top: 7px; right: 7px;
-        width: 7px; height: 7px;
+        top: 7px;
+        right: 7px;
+        width: 7px;
+        height: 7px;
         background: $danger;
         border-radius: $radius-full;
         border: 2px solid $surface;
@@ -93,9 +89,11 @@
       background: $surface;
       cursor: pointer;
       transition: $transition-fast;
+      font-family: $font-primary;
 
-      &:hover { background: $bg; }
-      &.active { background: $primary-50; color: $primary-light; border-color: $primary-100; }
+      &:hover {
+        background: $bg;
+      }
     }
   }
 }

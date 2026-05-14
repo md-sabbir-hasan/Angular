@@ -1,17 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ChartOfAccounts } from './chart-of-accounts';
+import { ChartOfAccountsComponent } from './chart-of-accounts';
 
-describe('ChartOfAccounts', () => {
-  let component: ChartOfAccounts;
-  let fixture: ComponentFixture<ChartOfAccounts>;
+describe('ChartOfAccountsComponent', () => {
+  let component: ChartOfAccountsComponent;
+  let fixture: ComponentFixture<ChartOfAccountsComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ChartOfAccounts],
+      imports: [ChartOfAccountsComponent],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(ChartOfAccounts);
+    fixture = TestBed.createComponent(ChartOfAccountsComponent);
     component = fixture.componentInstance;
     await fixture.whenStable();
   });

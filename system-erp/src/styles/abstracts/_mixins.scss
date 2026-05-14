@@ -2,7 +2,6 @@
 // Mixins
 // ============================================================
 
-// Flex helpers
 @mixin flex-center {
     display: flex;
     align-items: center;
@@ -21,34 +20,32 @@
     justify-content: flex-start;
 }
 
-// Responsive
-@mixin respond-to($breakpoint) {
-    @if $breakpoint =='sm' {
+@mixin respond-to($bp) {
+    @if $bp =='sm' {
         @media (max-width: 576px) {
             @content;
         }
     }
 
-    @else if $breakpoint =='md' {
+    @else if $bp =='md' {
         @media (max-width: 768px) {
             @content;
         }
     }
 
-    @else if $breakpoint =='lg' {
+    @else if $bp =='lg' {
         @media (max-width: 992px) {
             @content;
         }
     }
 
-    @else if $breakpoint =='xl' {
+    @else if $bp =='xl' {
         @media (max-width: 1200px) {
             @content;
         }
     }
 }
 
-// Truncate text
 @mixin truncate($width: 100%) {
     width: $width;
     white-space: nowrap;
@@ -56,7 +53,6 @@
     text-overflow: ellipsis;
 }
 
-// Card base
 @mixin card-base {
     background: $surface;
     border: 1px solid $border;
@@ -64,7 +60,6 @@
     box-shadow: $shadow-sm;
 }
 
-// Scrollbar
 @mixin scrollbar($width: 6px) {
     &::-webkit-scrollbar {
         width: $width;
@@ -86,7 +81,6 @@
     }
 }
 
-// Badge
 @mixin badge($bg, $color) {
     background: $bg;
     color: $color;
@@ -101,7 +95,6 @@
     gap: 4px;
 }
 
-// Input base
 @mixin input-base {
     font-family: $font-primary;
     font-size: 13.5px;
@@ -130,12 +123,6 @@
     }
 }
 
-// Stat card top border
-@mixin stat-border($color) {
-    border-top: 3px solid $color;
-}
-
-// Icon box
 @mixin icon-box($bg, $color, $size: 40px) {
     width: $size;
     height: $size;
@@ -143,6 +130,6 @@
     color: $color;
     border-radius: $radius-md;
     @include flex-center;
-    font-size: $size * 0.5;
+    font-size: calc($size * 0.5);
     flex-shrink: 0;
 }

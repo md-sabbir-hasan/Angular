@@ -2,24 +2,83 @@
 // Spacing Utilities
 // ============================================================
 
-$spacers: (0, 4, 8, 12, 16, 20, 24, 28, 32, 40, 48, 64);
+$spacers: (
+  0,
+  4,
+  8,
+  12,
+  16,
+  20,
+  24,
+  28,
+  32,
+  40,
+  48,
+  64
+);
 
 @each $s in $spacers {
-  .mt-#{$s} { margin-top: #{$s}px !important; }
-  .mb-#{$s} { margin-bottom: #{$s}px !important; }
-  .ml-#{$s} { margin-left: #{$s}px !important; }
-  .mr-#{$s} { margin-right: #{$s}px !important; }
-  .mx-#{$s} { margin-left: #{$s}px !important; margin-right: #{$s}px !important; }
-  .my-#{$s} { margin-top: #{$s}px !important; margin-bottom: #{$s}px !important; }
-  .m-#{$s}  { margin: #{$s}px !important; }
+  .mt-#{$s} {
+    margin-top: #{$s}px !important;
+  }
 
-  .pt-#{$s} { padding-top: #{$s}px !important; }
-  .pb-#{$s} { padding-bottom: #{$s}px !important; }
-  .pl-#{$s} { padding-left: #{$s}px !important; }
-  .pr-#{$s} { padding-right: #{$s}px !important; }
-  .px-#{$s} { padding-left: #{$s}px !important; padding-right: #{$s}px !important; }
-  .py-#{$s} { padding-top: #{$s}px !important; padding-bottom: #{$s}px !important; }
-  .p-#{$s}  { padding: #{$s}px !important; }
+  .mb-#{$s} {
+    margin-bottom: #{$s}px !important;
+  }
 
-  .gap-#{$s} { gap: #{$s}px !important; }
+  .ml-#{$s} {
+    margin-left: #{$s}px !important;
+  }
+
+  .mr-#{$s} {
+    margin-right: #{$s}px !important;
+  }
+
+  .mx-#{$s} {
+    margin-left: #{$s}px !important;
+    margin-right: #{$s}px !important;
+  }
+
+  .my-#{$s} {
+    margin-top: #{$s}px !important;
+    margin-bottom: #{$s}px !important;
+  }
+
+  .m-#{$s} {
+    margin: #{$s}px !important;
+  }
+
+  .pt-#{$s} {
+    padding-top: #{$s}px !important;
+  }
+
+  .pb-#{$s} {
+    padding-bottom: #{$s}px !important;
+  }
+
+  .pl-#{$s} {
+    padding-left: #{$s}px !important;
+  }
+
+  .pr-#{$s} {
+    padding-right: #{$s}px !important;
+  }
+
+  .px-#{$s} {
+    padding-left: #{$s}px !important;
+    padding-right: #{$s}px !important;
+  }
+
+  .py-#{$s} {
+    padding-top: #{$s}px !important;
+    padding-bottom: #{$s}px !important;
+  }
+
+  .p-#{$s} {
+    padding: #{$s}px !important;
+  }
+
+  .gap-#{$s} {
+    gap: #{$s}px !important;
+  }
 }

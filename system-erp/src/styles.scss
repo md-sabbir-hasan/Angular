@@ -1,45 +1,43 @@
 // // ============================================================
 // // FinanceERP — Master Stylesheet
+// // Import order matters — abstracts first, then base, layout,
+// // components, pages, themes, utilities
 // // ============================================================
 
-// // Abstracts
-// @import 'styles/abstracts/variables';
-// @import 'styles/abstracts/mixins';
-// @import 'styles/abstracts/functions';
+// // Abstracts (variables, mixins, functions — no CSS output)
+// @use 'styles/abstracts/variables' as *;
+// @use 'styles/abstracts/mixins' as *;
+// @use 'styles/abstracts/functions' as *;
 
 // // Base
-// @import 'styles/base/reset';
-// @import 'styles/base/typography';
-// @import 'styles/base/animations';
+// @use 'styles/base/reset';
+// @use 'styles/base/typography';
+// @use 'styles/base/animations';
 
 // // Layout
-// @import 'styles/layout/sidebar';
-// @import 'styles/layout/navbar';
-// @import 'styles/layout/footer';
-// @import 'styles/layout/grid';
+// @use 'styles/layout/sidebar';
+// @use 'styles/layout/navbar';
+// @use 'styles/layout/footer';
+// @use 'styles/layout/grid';
 
 // // Components
-// @import 'styles/components/buttons';
-// @import 'styles/components/cards';
-// @import 'styles/components/tables';
-// @import 'styles/components/forms';
-// @import 'styles/components/badges';
-// @import 'styles/components/modals';
-// @import 'styles/components/alerts';
-// @import 'styles/components/loader';
+// @use 'styles/components/buttons';
+// @use 'styles/components/cards';
+// @use 'styles/components/tables';
+// @use 'styles/components/forms';
+// @use 'styles/components/badges';
+// @use 'styles/components/modals';
+// @use 'styles/components/alerts';
+// @use 'styles/components/loader';
 
 // // Pages
-// @import 'styles/pages/auth';
-// @import 'styles/pages/dashboard';
-// @import 'styles/pages/finance';
+// @use 'styles/pages/auth';
+// @use 'styles/pages/dashboard';
+// @use 'styles/pages/finance';
 
 // // Themes
-// @import 'styles/themes/default';
+// @use 'styles/themes/default';
 
 // // Utilities
-// @import 'styles/utilities/spacing';
-// @import 'styles/utilities/helpers';
-
-// // Bootstrap
-// @import 'bootstrap/dist/css/bootstrap.min.css';
-// @import 'bootstrap-icons/font/bootstrap-icons.css';
+// @use 'styles/utilities/spacing';
+// @use 'styles/utilities/helpers';

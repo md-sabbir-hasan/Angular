@@ -1,6 +1,8 @@
 // ============================================================
 // Cards
 // ============================================================
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
 
 .erp-card {
   @include card-base;
@@ -10,17 +12,33 @@
     @include flex-between;
     padding: 16px 20px;
     border-bottom: 1px solid $border;
-    background: transparent;
 
     &-left {
-      h5, h6 { margin: 0; font-weight: 600; font-size: 14px; color: $text; }
-      p { margin: 2px 0 0; font-size: 12px; color: $text-muted; }
+
+      h5,
+      h6 {
+        margin: 0;
+        font-weight: 600;
+        font-size: 14px;
+      }
+
+      p {
+        margin: 2px 0 0;
+        font-size: 12px;
+        color: $text-muted;
+      }
     }
 
-    &-actions { @include flex-start; gap: 8px; }
+    &-actions {
+      @include flex-start;
+      gap: 8px;
+    }
   }
 
-  &__body { padding: 20px; }
+  &__body {
+    padding: 20px;
+  }
+
   &__footer {
     padding: 12px 20px;
     border-top: 1px solid $border;
@@ -30,7 +48,6 @@
   }
 }
 
-// Stat Card
 .stat-card {
   @include card-base;
   padding: 20px;
@@ -38,7 +55,10 @@
   overflow: hidden;
   transition: $transition;
 
-  &:hover { box-shadow: $shadow-md; transform: translateY(-2px); }
+  &:hover {
+    box-shadow: $shadow-md;
+    transform: translateY(-2px);
+  }
 
   &__label {
     font-size: 11px;
@@ -64,45 +84,75 @@
     @include flex-start;
     gap: 4px;
 
-    &.up   { color: $success; }
-    &.down { color: $danger; }
-    &.neutral { color: $text-muted; }
+    &.up {
+      color: $success;
+    }
+
+    &.down {
+      color: $danger;
+    }
+
+    &.neutral {
+      color: $text-muted;
+    }
   }
 
   &__icon {
     position: absolute;
-    top: 16px; right: 16px;
+    top: 16px;
+    right: 16px;
     @include icon-box($primary-50, $primary-light, 44px);
   }
 
-  // Variants
   &--revenue {
     border-top: 3px solid #059669;
-    .stat-card__icon { @include icon-box($success-bg, $success, 44px); }
+
+    .stat-card__icon {
+      @include icon-box($success-bg, $success, 44px);
+    }
   }
+
   &--receivable {
     border-top: 3px solid $primary-light;
-    .stat-card__icon { @include icon-box($primary-50, $primary-light, 44px); }
+
+    .stat-card__icon {
+      @include icon-box($primary-50, $primary-light, 44px);
+    }
   }
+
   &--payable {
     border-top: 3px solid $danger;
-    .stat-card__icon { @include icon-box($danger-bg, $danger, 44px); }
+
+    .stat-card__icon {
+      @include icon-box($danger-bg, $danger, 44px);
+    }
   }
+
   &--vat {
     border-top: 3px solid $accent;
-    .stat-card__icon { @include icon-box($accent-light, #a16207, 44px); }
+
+    .stat-card__icon {
+      @include icon-box($accent-light, #a16207, 44px);
+    }
   }
+
   &--cash {
     border-top: 3px solid #0891b2;
-    .stat-card__icon { @include icon-box($info-bg, $info, 44px); }
+
+    .stat-card__icon {
+      @include icon-box($info-bg, $info, 44px);
+    }
   }
+
   &--expense {
     border-top: 3px solid $warning;
-    .stat-card__icon { @include icon-box($warning-bg, $warning, 44px); }
+
+    .stat-card__icon {
+      @include icon-box($warning-bg, $warning, 44px);
+    }
   }
 }
 
-// Summary Card
 .summary-box {
   background: $bg;
   border-radius: $radius-md;
@@ -114,10 +164,18 @@
     font-size: 13.5px;
     border-bottom: 1px dashed $border-light;
 
-    &:last-child { border-bottom: none; }
+    &:last-child {
+      border-bottom: none;
+    }
 
-    .label { color: $text-muted; }
-    .value { font-family: $font-mono; font-weight: 500; color: $text; }
+    .label {
+      color: $text-muted;
+    }
+
+    .value {
+      font-family: $font-mono;
+      font-weight: 500;
+    }
 
     &--total {
       font-weight: 700;
@@ -127,7 +185,9 @@
       border-bottom: none;
       margin-top: 4px;
 
-      .value { color: $primary-light; font-size: 16px; }
+      .value {
+        color: $primary-light;
+      }
     }
   }
 }

@@ -1,13 +1,17 @@
 // ============================================================
 // Auth Pages
 // ============================================================
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
 
 .auth-layout {
   min-height: 100vh;
   display: grid;
   grid-template-columns: 1fr 1fr;
 
-  @include respond-to('md') { grid-template-columns: 1fr; }
+  @include respond-to('md') {
+    grid-template-columns: 1fr;
+  }
 
   &__brand {
     background: $primary;
@@ -20,19 +24,23 @@
     &::before {
       content: '';
       position: absolute;
-      width: 400px; height: 400px;
-      background: rgba(255,255,255,0.03);
+      width: 400px;
+      height: 400px;
+      background: rgba(255, 255, 255, 0.03);
       border-radius: $radius-full;
-      top: -100px; right: -100px;
+      top: -100px;
+      right: -100px;
     }
 
     &::after {
       content: '';
       position: absolute;
-      width: 300px; height: 300px;
-      background: rgba(255,255,255,0.03);
+      width: 300px;
+      height: 300px;
+      background: rgba(255, 255, 255, 0.03);
       border-radius: $radius-full;
-      bottom: -80px; left: -80px;
+      bottom: -80px;
+      left: -80px;
     }
 
     .brand-content {
@@ -40,7 +48,8 @@
       z-index: 1;
 
       .brand-icon {
-        width: 72px; height: 72px;
+        width: 72px;
+        height: 72px;
         background: $accent;
         border-radius: $radius-xl;
         @include flex-center;
@@ -53,13 +62,12 @@
         font-size: 32px;
         font-weight: 700;
         color: #fff;
-        letter-spacing: -0.5px;
         margin-bottom: 8px;
       }
 
       p {
         font-size: 15px;
-        color: rgba(255,255,255,0.6);
+        color: rgba(255, 255, 255, 0.6);
         margin-bottom: 32px;
       }
 
@@ -70,16 +78,21 @@
         .feature-item {
           @include flex-start;
           gap: 10px;
-          color: rgba(255,255,255,0.8);
+          color: rgba(255, 255, 255, 0.8);
           font-size: 14px;
           margin-bottom: 12px;
 
-          i { color: $accent; font-size: 16px; }
+          i {
+            color: $accent;
+            font-size: 16px;
+          }
         }
       }
     }
 
-    @include respond-to('md') { display: none; }
+    @include respond-to('md') {
+      display: none;
+    }
   }
 
   &__form {
@@ -98,7 +111,8 @@
         margin-bottom: 32px;
 
         .logo-icon {
-          width: 40px; height: 40px;
+          width: 40px;
+          height: 40px;
           background: $primary;
           border-radius: $radius-md;
           @include flex-center;
@@ -110,7 +124,6 @@
           font-size: 18px;
           font-weight: 700;
           color: $text;
-          letter-spacing: -0.3px;
         }
       }
 
@@ -119,7 +132,6 @@
         font-weight: 700;
         color: $text;
         margin-bottom: 4px;
-        letter-spacing: -0.3px;
       }
 
       .form-subtitle {
@@ -139,7 +151,6 @@
       .forgot-link {
         font-size: 13px;
         color: $primary-light;
-        &:hover { color: $primary; }
       }
 
       .auth-footer {
@@ -148,36 +159,10 @@
         font-size: 13.5px;
         color: $text-muted;
 
-        a { color: $primary-light; font-weight: 500; }
-      }
-
-      .divider-text {
-        @include flex-between;
-        gap: 12px;
-        margin: 20px 0;
-        color: $text-muted;
-        font-size: 12px;
-
-        &::before, &::after {
-          content: '';
-          flex: 1;
-          height: 1px;
-          background: $border;
+        a {
+          color: $primary-light;
+          font-weight: 500;
         }
-      }
-
-      .password-input {
-        position: relative;
-        .toggle-pw {
-          position: absolute;
-          right: 12px; top: 50%;
-          transform: translateY(-50%);
-          color: $text-muted;
-          cursor: pointer;
-          font-size: 16px;
-          &:hover { color: $text; }
-        }
-        input { padding-right: 40px; }
       }
 
       .strength-bar {
@@ -193,10 +178,25 @@
           transition: width 0.3s, background 0.3s;
         }
 
-        &.weak   .bar { width: 25%; background: $danger; }
-        &.fair   .bar { width: 50%; background: $accent; }
-        &.good   .bar { width: 75%; background: $info; }
-        &.strong .bar { width: 100%; background: $success; }
+        &.weak .bar {
+          width: 25%;
+          background: $danger;
+        }
+
+        &.fair .bar {
+          width: 50%;
+          background: $accent;
+        }
+
+        &.good .bar {
+          width: 75%;
+          background: $info;
+        }
+
+        &.strong .bar {
+          width: 100%;
+          background: $success;
+        }
       }
     }
   }

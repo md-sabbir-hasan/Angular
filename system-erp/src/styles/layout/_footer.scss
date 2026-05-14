@@ -1,6 +1,8 @@
 // ============================================================
 // Footer
 // ============================================================
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
 
 .app-footer {
   height: $footer-height;
@@ -15,7 +17,10 @@
     font-size: 12px;
     color: $text-muted;
 
-    span { font-weight: 500; color: $text; }
+    span {
+      font-weight: 500;
+      color: $text;
+    }
   }
 
   .footer-right {
@@ -26,7 +31,10 @@
 
     a {
       color: $text-muted;
-      &:hover { color: $primary-light; }
+
+      &:hover {
+        color: $primary-light;
+      }
     }
   }
 }

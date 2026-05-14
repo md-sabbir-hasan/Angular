@@ -1,6 +1,8 @@
 // ============================================================
-// Grid / Layout helpers
+// Grid / Layout
 // ============================================================
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
 
 .page-content {
   padding: 24px;
@@ -15,8 +17,18 @@
   gap: 12px;
 
   &__left {
-    h2 { @extend .page-title; }
-    p  { @extend .page-subtitle; }
+    h2 {
+      font-size: 20px;
+      font-weight: 700;
+      color: $text;
+      margin: 0;
+    }
+
+    p {
+      font-size: 13px;
+      color: $text-muted;
+      margin: 4px 0 0;
+    }
   }
 
   &__actions {
@@ -32,8 +44,13 @@
   gap: 16px;
   margin-bottom: 20px;
 
-  @include respond-to('xl') { grid-template-columns: repeat(2, 1fr); }
-  @include respond-to('sm') { grid-template-columns: 1fr; }
+  @include respond-to('xl') {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include respond-to('sm') {
+    grid-template-columns: 1fr;
+  }
 }
 
 .content-grid {
@@ -41,7 +58,9 @@
   grid-template-columns: 1fr 1fr;
   gap: 16px;
 
-  @include respond-to('lg') { grid-template-columns: 1fr; }
+  @include respond-to('lg') {
+    grid-template-columns: 1fr;
+  }
 }
 
 .content-grid-3 {
@@ -49,12 +68,31 @@
   grid-template-columns: repeat(3, 1fr);
   gap: 16px;
 
-  @include respond-to('lg') { grid-template-columns: repeat(2, 1fr); }
-  @include respond-to('sm') { grid-template-columns: 1fr; }
+  @include respond-to('lg') {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include respond-to('sm') {
+    grid-template-columns: 1fr;
+  }
 }
 
 .divider {
   height: 1px;
   background: $border;
   margin: 16px 0;
+}
+
+.progress-thin {
+  height: 4px;
+  border-radius: 2px;
+  background: $border;
+  overflow: hidden;
+  margin-top: 6px;
+
+  .bar {
+    height: 100%;
+    border-radius: 2px;
+    transition: width 0.5s;
+  }
 }

@@ -1,38 +1,35 @@
 // ============================================================
-// Default Theme — CSS Custom Properties
+// CSS Custom Properties — Default Theme
 // ============================================================
+@use '../abstracts/variables' as *;
 
 :root {
-  --primary        : #{$primary};
-  --primary-light  : #{$primary-light};
-  --primary-50     : #{$primary-50};
-  --accent         : #{$accent};
-  --accent-light   : #{$accent-light};
-  --success        : #{$success};
-  --success-bg     : #{$success-bg};
-  --danger         : #{$danger};
-  --danger-bg      : #{$danger-bg};
-  --warning        : #{$warning};
-  --warning-bg     : #{$warning-bg};
-  --info           : #{$info};
-  --info-bg        : #{$info-bg};
-  --text           : #{$text};
-  --text-muted     : #{$text-muted};
-  --text-light     : #{$text-light};
-  --surface        : #{$surface};
-  --bg             : #{$bg};
-  --border         : #{$border};
-  --font-primary   : #{$font-primary};
-  --font-mono      : #{$font-mono};
-  --sidebar-width  : #{$sidebar-width};
-  --topbar-height  : #{$topbar-height};
-  --shadow-sm      : #{$shadow-sm};
-  --shadow-md      : #{$shadow-md};
-  --shadow-lg      : #{$shadow-lg};
-  --radius-sm      : #{$radius-sm};
-  --radius-md      : #{$radius-md};
-  --radius-lg      : #{$radius-lg};
-  --radius-xl      : #{$radius-xl};
-  --radius-full    : #{$radius-full};
-  --transition     : #{$transition};
+  --primary : #{$primary};
+  --primary-light : #{$primary-light};
+  --primary-50 : #{$primary-50};
+  --accent : #{$accent};
+  --success : #{$success};
+  --success-bg : #{$success-bg};
+  --danger : #{$danger};
+  --danger-bg : #{$danger-bg};
+  --warning : #{$warning};
+  --warning-bg : #{$warning-bg};
+  --info : #{$info};
+  --info-bg : #{$info-bg};
+  --text : #{$text};
+  --text-muted : #{$text-muted};
+  --surface : #{$surface};
+  --bg : #{$bg};
+  --border : #{$border};
+  --font-primary : #{$font-primary};
+  --font-mono : #{$font-mono};
+  --sidebar-width : #{$sidebar-width};
+  --topbar-height : #{$topbar-height};
+  --shadow-sm : #{$shadow-sm};
+  --shadow-md : #{$shadow-md};
+  --shadow-lg : #{$shadow-lg};
+  --radius-md : #{$radius-md};
+  --radius-lg : #{$radius-lg};
+  --radius-xl : #{$radius-xl};
+  --radius-full : #{$radius-full};
 }

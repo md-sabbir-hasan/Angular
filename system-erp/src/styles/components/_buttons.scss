@@ -1,109 +1,128 @@
 // ============================================================
 // Buttons
 // ============================================================
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
 
-.btn-primary-erp {
-  @include flex-center;
+%btn-base {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   gap: 6px;
-  padding: 9px 18px;
-  background: $primary-light;
-  color: #fff;
-  border-radius: $radius-md;
+  font-family: $font-primary;
   font-size: 13.5px;
   font-weight: 500;
-  font-family: $font-primary;
   border: none;
+  border-radius: $radius-md;
   cursor: pointer;
   transition: $transition-fast;
   white-space: nowrap;
+  padding: 9px 18px;
 
-  &:hover { background: $primary; transform: translateY(-1px); box-shadow: $shadow-md; }
-  &:active { transform: translateY(0); }
-  &:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none !important;
+  }
+}
 
-  &--sm { padding: 6px 12px; font-size: 12.5px; }
-  &--xs { padding: 4px 8px; font-size: 11.5px; }
-  &--lg { padding: 12px 24px; font-size: 15px; }
-  &--full { width: 100%; }
-  &--icon { padding: 9px; }
+.btn-primary-erp {
+  @extend %btn-base;
+  background: $primary-light;
+  color: #fff;
+
+  &:hover {
+    background: $primary;
+    transform: translateY(-1px);
+    box-shadow: $shadow-md;
+  }
+
+  &--sm {
+    padding: 6px 12px;
+    font-size: 12.5px;
+  }
+
+  &--xs {
+    padding: 4px 8px;
+    font-size: 11.5px;
+  }
+
+  &--lg {
+    padding: 12px 24px;
+    font-size: 15px;
+  }
+
+  &--full {
+    width: 100%;
+  }
 }
 
 .btn-outline-erp {
-  @include flex-center;
-  gap: 6px;
-  padding: 8px 16px;
+  @extend %btn-base;
   background: transparent;
   color: $text-muted;
   border: 1px solid $border;
-  border-radius: $radius-md;
-  font-size: 13.5px;
-  font-weight: 500;
-  font-family: $font-primary;
-  cursor: pointer;
-  transition: $transition-fast;
-  white-space: nowrap;
 
-  &:hover { background: $bg; color: $text; border-color: $text-light; }
-  &:disabled { opacity: 0.6; cursor: not-allowed; }
+  &:hover {
+    background: $bg;
+    color: $text;
+    border-color: $text-light;
+  }
 
-  &--sm { padding: 5px 12px; font-size: 12.5px; }
-  &--xs { padding: 3px 8px; font-size: 11.5px; }
+  &--sm {
+    padding: 5px 12px;
+    font-size: 12.5px;
+  }
+
+  &--xs {
+    padding: 3px 8px;
+    font-size: 11.5px;
+  }
+
+  &--full {
+    width: 100%;
+  }
 }
 
 .btn-danger-erp {
-  @include flex-center;
-  gap: 6px;
-  padding: 8px 16px;
+  @extend %btn-base;
   background: $danger-bg;
   color: $danger;
-  border-radius: $radius-md;
-  font-size: 13.5px;
-  font-weight: 500;
-  font-family: $font-primary;
-  border: none;
-  cursor: pointer;
-  transition: $transition-fast;
 
-  &:hover { background: $danger-border; }
-  &--sm { padding: 5px 10px; font-size: 12px; }
+  &:hover {
+    background: $danger-border;
+  }
+
+  &--sm {
+    padding: 5px 10px;
+    font-size: 12px;
+  }
 }
 
 .btn-success-erp {
-  @include flex-center;
-  gap: 6px;
-  padding: 8px 16px;
+  @extend %btn-base;
   background: $success-bg;
   color: $success;
-  border-radius: $radius-md;
-  font-size: 13.5px;
-  font-weight: 500;
-  font-family: $font-primary;
-  border: none;
-  cursor: pointer;
-  transition: $transition-fast;
 
-  &:hover { background: $success-border; }
+  &:hover {
+    background: $success-border;
+  }
 }
 
 .btn-accent-erp {
-  @include flex-center;
-  gap: 6px;
-  padding: 9px 18px;
+  @extend %btn-base;
   background: $accent;
   color: $primary;
-  border-radius: $radius-md;
-  font-size: 13.5px;
   font-weight: 600;
-  font-family: $font-primary;
-  border: none;
-  cursor: pointer;
-  transition: $transition-fast;
 
-  &:hover { background: darken($accent, 8%); }
+  &:hover {
+    background: darken($accent, 8%);
+  }
 }
 
 .btn-icon {
-  width: 32px; height: 32px;
+  width: 32px;
+  height: 32px;
   @include flex-center;
   border-radius: $radius-md;
   border: 1px solid $border;
@@ -113,8 +132,26 @@
   cursor: pointer;
   transition: $transition-fast;
 
-  &:hover { background: $bg; color: $text; }
-  &--danger:hover { background: $danger-bg; color: $danger; border-color: $danger-border; }
-  &--success:hover { background: $success-bg; color: $success; border-color: $success-border; }
-  &--primary:hover { background: $primary-50; color: $primary-light; border-color: $primary-100; }
+  &:hover {
+    background: $bg;
+    color: $text;
+  }
+
+  &--danger:hover {
+    background: $danger-bg;
+    color: $danger;
+    border-color: $danger-border;
+  }
+
+  &--success:hover {
+    background: $success-bg;
+    color: $success;
+    border-color: $success-border;
+  }
+
+  &--primary:hover {
+    background: $primary-50;
+    color: $primary-light;
+    border-color: $primary-100;
+  }
 }

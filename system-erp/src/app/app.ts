@@ -6,7 +6,7 @@ import { AccountFormComponent } from './src/app/modules/finance/components/accou
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, PageHeaderComponent, FooterComponent],
+  imports: [RouterOutlet],
   templateUrl: './app.html',
   styleUrl: './app.scss'
 })

@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { Ledger } from './ledger';
+import { LedgerService } from './ledger';
 
-describe('Ledger', () => {
-  let service: Ledger;
+describe('LedgerService', () => {
+  let service: LedgerService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(Ledger);
+    service = TestBed.inject(LedgerService);
   });
 
   it('should be created', () => {

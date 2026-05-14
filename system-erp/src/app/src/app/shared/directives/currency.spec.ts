@@ -1,8 +1,16 @@
-import { Currency } from './currency';
+import { ElementRef } from '@angular/core';
 
-describe('Currency', () => {
+import { CurrencyDirective } from './currency';
+
+describe('CurrencyDirective', () => {
   it('should create an instance', () => {
-    const directive = new Currency();
+
+    const mockElementRef = new ElementRef(
+      document.createElement('input')
+    );
+
+    const directive = new CurrencyDirective(mockElementRef);
+
     expect(directive).toBeTruthy();
   });
 });

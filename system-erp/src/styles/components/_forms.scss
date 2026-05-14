@@ -1,6 +1,8 @@
 // ============================================================
 // Forms
 // ============================================================
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
 
 .form-group {
   margin-bottom: 16px;
@@ -14,11 +16,16 @@
     letter-spacing: 0.4px;
     margin-bottom: 6px;
 
-    .required { color: $danger; margin-left: 2px; }
+    .required {
+      color: $danger;
+      margin-left: 2px;
+    }
   }
 
   .form-control,
-  .form-select { @include input-base; }
+  .form-select {
+    @include input-base;
+  }
 
   textarea.form-control {
     resize: vertical;
@@ -39,21 +46,23 @@
     gap: 4px;
   }
 
-  &.has-error {
-    .form-control, .form-select {
-      border-color: $danger;
-      &:focus { box-shadow: 0 0 0 3px rgba(153,27,27,0.1); }
+  &.has-error .form-control,
+  &.has-error .form-select {
+    border-color: $danger;
+
+    &:focus {
+      box-shadow: 0 0 0 3px rgba(153, 27, 27, 0.1);
     }
   }
 }
 
-// Search box
 .search-box {
   position: relative;
 
   i {
     position: absolute;
-    left: 10px; top: 50%;
+    left: 10px;
+    top: 50%;
     transform: translateY(-50%);
     color: $text-muted;
     font-size: 14px;
@@ -66,17 +75,19 @@
     height: 36px;
     background: $bg;
 
-    &:focus { background: $surface; }
+    &:focus {
+      background: $surface;
+    }
   }
 }
 
-// Input group with currency prefix
 .input-currency {
   position: relative;
 
   .currency-prefix {
     position: absolute;
-    left: 12px; top: 50%;
+    left: 12px;
+    top: 50%;
     transform: translateY(-50%);
     font-family: $font-mono;
     font-size: 13px;
@@ -85,10 +96,12 @@
     pointer-events: none;
   }
 
-  input { @include input-base; padding-left: 28px; }
+  input {
+    @include input-base;
+    padding-left: 28px;
+  }
 }
 
-// Checkbox / Radio
 .form-check-erp {
   @include flex-start;
   gap: 8px;
@@ -96,7 +109,8 @@
 
   input[type="checkbox"],
   input[type="radio"] {
-    width: 16px; height: 16px;
+    width: 16px;
+    height: 16px;
     accent-color: $primary-light;
     cursor: pointer;
   }
@@ -112,13 +126,20 @@
   }
 }
 
-// Filter bar
 .filter-bar {
   @include flex-between;
   gap: 12px;
-  margin-bottom: 16px;
   flex-wrap: wrap;
 
-  &__left  { @include flex-start; gap: 8px; flex-wrap: wrap; }
-  &__right { @include flex-start; gap: 8px; flex-wrap: wrap; }
+  &__left {
+    @include flex-start;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  &__right {
+    @include flex-start;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
 }

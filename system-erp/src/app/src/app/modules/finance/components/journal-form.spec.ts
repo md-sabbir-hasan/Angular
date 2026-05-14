@@ -1,17 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { JournalForm } from './journal-form';
+import { JournalFormComponent } from './journal-form';
 
-describe('JournalForm', () => {
-  let component: JournalForm;
-  let fixture: ComponentFixture<JournalForm>;
+describe('JournalFormComponent', () => {
+  let component: JournalFormComponent;
+  let fixture: ComponentFixture<JournalFormComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [JournalForm],
+      imports: [JournalFormComponent],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(JournalForm);
+    fixture = TestBed.createComponent(JournalFormComponent);
     component = fixture.componentInstance;
     await fixture.whenStable();
   });

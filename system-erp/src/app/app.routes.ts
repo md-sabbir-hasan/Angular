@@ -72,37 +72,37 @@ export const routes: Routes = [
                         path: 'journal-entry',
                         loadComponent: () =>
                             import('./src/app/modules/finance/pages/journal-entry')
-                                .then(m => m.JournalEntry)
+                                .then(m => m.JournalEntryComponent)
                     },
                     {
                         path: 'ledger',
                         loadComponent: () =>
                             import('./src/app/modules/finance/pages/ledger')
-                                .then(m => m.Ledger)
+                                .then(m => m.LedgerComponent)
                     },
                     {
                         path: 'trial-balance',
                         loadComponent: () =>
                             import('./src/app/modules/finance/pages/trial-balance')
-                                .then(m => m.TrialBalance)
+                                .then(m => m.TrialBalanceComponent)
                     },
                     {
                         path: 'invoices',
                         loadComponent: () =>
                             import('./src/app/modules/finance/pages/invoices')
-                                .then(m => m.Invoices)
+                                .then(m => m.InvoicesComponent)
                     },
                     {
                         path: 'expenses',
                         loadComponent: () =>
                             import('./src/app/modules/finance/pages/expenses')
-                                .then(m => m.Expenses)
+                                .then(m => m.ExpensesComponent)
                     },
                     {
                         path: 'reports',
                         loadComponent: () =>
                             import('./src/app/modules/finance/pages/reports')
-                                .then(m => m.Reports)
+                                .then(m => m.ReportsComponent)
                     }
                 ]
             },
@@ -110,31 +110,34 @@ export const routes: Routes = [
                 path: 'inventory',
                 loadComponent: () =>
                     import('./src/app/modules/inventory/pages/dashboard')
-                        .then(m => m.Dashboard)
+                        .then(m => m.DashboardComponent)
             },
             {
                 path: 'sales',
                 loadComponent: () =>
                     import('./src/app/modules/sales/pages/dashboard')
-                        .then(m => m.Dashboard)
+                        .then(m => m.DashboardComponent)
             },
             {
                 path: 'hrm',
                 loadComponent: () =>
                     import('./src/app/modules/hrm/pages/dashboard')
-                        .then(m => m.Dashboard)
+                        .then(m => m.DashboardComponent)
+
+
             },
             {
                 path: 'crm',
                 loadComponent: () =>
                     import('./src/app/modules/crm/pages/dashboard')
-                        .then(m => m.Dashboard)
+                        .then(m => m.DashboardComponent)
             },
             {
                 path: 'settings',
                 loadComponent: () =>
                     import('./src/app/modules/settings/pages/dashboard')
-                        .then(m => m.Dashboard)
+                        .then(m => m.DashboardComponent)
+
             }
         ]
     },

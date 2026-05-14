@@ -1,6 +1,8 @@
 // ============================================================
-// Badges & Status Pills
+// Badges
 // ============================================================
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
 
 .badge-status {
   display: inline-flex;
@@ -16,39 +18,58 @@
 
   &::before {
     content: '';
-    width: 5px; height: 5px;
+    width: 5px;
+    height: 5px;
     border-radius: $radius-full;
     background: currentColor;
     flex-shrink: 0;
   }
 
-  &.paid, &.posted, &.completed, &.deposited, &.active {
+  &.paid,
+  &.posted,
+  &.completed,
+  &.deposited,
+  &.active {
     @include badge($success-bg, $success);
   }
+
   &.draft {
     @include badge(#f1f5f9, $text-muted);
   }
-  &.sent, &.received, &.submitted, &.processing {
+
+  &.sent,
+  &.received,
+  &.submitted,
+  &.processing {
     @include badge($info-bg, $info);
   }
-  &.partial, &.pending, &.in_progress {
+
+  &.partial,
+  &.pending {
     @include badge($warning-bg, $warning);
   }
-  &.overdue, &.failed, &.cancelled, &.rejected, &.inactive {
+
+  &.overdue,
+  &.failed,
+  &.cancelled,
+  &.rejected,
+  &.inactive {
     @include badge($danger-bg, $danger);
   }
+
   &.approved {
     @include badge(#f0fdf4, #15803d);
   }
+
   &.output {
     @include badge($primary-50, $primary-light);
   }
+
   &.input {
     @include badge($accent-light, #a16207);
   }
 }
 
-// Account type badges
 .badge-type {
   display: inline-flex;
   padding: 2px 8px;
@@ -57,14 +78,27 @@
   font-weight: 600;
   text-transform: uppercase;
 
-  &.asset     { @include badge($info-bg, $info); }
-  &.liability { @include badge($danger-bg, $danger); }
-  &.equity    { @include badge($warning-bg, $warning); }
-  &.revenue   { @include badge($success-bg, $success); }
-  &.expense   { @include badge(#fdf4ff, #7e22ce); }
+  &.asset {
+    @include badge($info-bg, $info);
+  }
+
+  &.liability {
+    @include badge($danger-bg, $danger);
+  }
+
+  &.equity {
+    @include badge($warning-bg, $warning);
+  }
+
+  &.revenue {
+    @include badge($success-bg, $success);
+  }
+
+  &.expense {
+    @include badge(#fdf4ff, #7e22ce);
+  }
 }
 
-// Payment method badge
 .badge-method {
   display: inline-flex;
   align-items: center;
@@ -74,11 +108,34 @@
   font-size: 11px;
   font-weight: 600;
 
-  &.bkash   { background: #fce7f3; color: #be185d; }
-  &.nagad   { background: #fff7ed; color: #c2410c; }
-  &.rocket  { background: #f5f3ff; color: #6d28d9; }
-  &.bank_transfer { @include badge($info-bg, $info); }
-  &.cheque  { @include badge(#f1f5f9, $text-muted); }
-  &.cash    { @include badge($success-bg, $success); }
-  &.card    { @include badge($primary-50, $primary-light); }
+  &.bkash {
+    background: #fce7f3;
+    color: #be185d;
+  }
+
+  &.nagad {
+    background: #fff7ed;
+    color: #c2410c;
+  }
+
+  &.rocket {
+    background: #f5f3ff;
+    color: #6d28d9;
+  }
+
+  &.bank_transfer {
+    @include badge($info-bg, $info);
+  }
+
+  &.cheque {
+    @include badge(#f1f5f9, $text-muted);
+  }
+
+  &.cash {
+    @include badge($success-bg, $success);
+  }
+
+  &.card {
+    @include badge($primary-50, $primary-light);
+  }
 }
