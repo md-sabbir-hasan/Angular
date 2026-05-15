@@ -118,7 +118,7 @@ interface Party { id: string; name: string; }
               <thead>
                 <tr>
                   <th style="min-width:200px">Description</th>
-                  <th style="width:80px">Qty</th>
+                  <th style="width:150px">Qty</th>
                   <th style="width:120px">Unit Price (৳)</th>
                   <th style="width:80px">VAT %</th>
                   <th style="width:120px" class="text-right">Total (৳)</th>
@@ -180,6 +180,7 @@ interface Party { id: string; name: string; }
                         [disabled]="formData.items.length === 1"
                         (click)="removeLine(i)">
                         <i class="bi bi-trash3"></i>
+                        New
                       </button>
                     </td>
                   </tr>

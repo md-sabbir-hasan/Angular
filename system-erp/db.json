@@ -39,24 +39,15 @@
   ],
   "accounts": [
     {
-      "id": "acc-001",
-      "tenant_id": "t1",
-      "code": "1001",
-      "name": "Cash in Hand",
-      "type": "asset",
-      "parent_id": null,
-      "is_active": true,
-      "balance": 450000
-    },
-    {
       "id": "acc-002",
       "tenant_id": "t1",
-      "code": "1002",
-      "name": "Bank - Dutch-Bangla",
+      "code": "500000",
+      "name": "MD. SABBIR HASAN",
       "type": "asset",
-      "parent_id": null,
+      "parent_id": "acc-003",
       "is_active": true,
-      "balance": 2850000
+      "balance": 2850000,
+      "description": ""
     },
     {
       "id": "acc-003",
@@ -187,6 +178,17 @@
       "parent_id": null,
       "is_active": true,
       "balance": 45000
+    },
+    {
+      "code": "20520",
+      "name": "K.M. ALPHE SAHRYN",
+      "type": "expense",
+      "parent_id": "acc-002",
+      "is_active": false,
+      "description": "",
+      "id": "2FxB-ZkcCeQ",
+      "tenant_id": "t1",
+      "balance": 0
     }
   ],
   "journal_entries": [

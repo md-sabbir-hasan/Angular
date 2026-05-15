@@ -18,7 +18,7 @@ import { Account, AccountFormData } from '../models/account.model';
     FormsModule,
     PageHeaderComponent,
     AccountFormComponent,
-    AccountTableComponent,
+
     ConfirmDialogComponent,
     CurrencyPipe
   ],
@@ -130,11 +130,95 @@ import { Account, AccountFormData } from '../models/account.model';
 
       <!-- Accounts Table -->
       <div class="erp-card">
-        <app-account-table
-          [accounts]="paginatedAccounts()"
-          [loading]="loading()"
-          (edit)="onEdit($event)"
-          (delete)="onDeleteConfirm($event)"/>
+         <div class="erp-card">
+        <div class="table-wrapper">
+          <table class="erp-table">
+            <thead>
+              <tr>
+                <th>Code</th>
+                <th>Account Name</th>
+                <th>Type</th>
+                <th class="text-right">Balance (৳)</th>
+                <th class="text-center">Status</th>
+                <th class="text-right">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              @if (loading()) {
+                @for (i of [1,2,3,4,5]; track i) {
+                  <tr>
+                    @for (j of [1,2,3,4,5,6]; track j) {
+                      <td>
+                        <div class="skeleton"
+                          style="height:14px;border-radius:4px">
+                        </div>
+                      </td>
+                    }
+                  </tr>
+                }
+              } @else if (paginatedAccounts().length === 0) {
+                <tr>
+                  <td colspan="6">
+                    <div class="table-empty">
+                      <i class="bi bi-diagram-3"></i>
+                      <p>No accounts found</p>
+                    </div>
+                  </td>
+                </tr>
+              } @else {
+                @for (account of paginatedAccounts(); track account.id) {
+                  <tr>
+                    <td>
+                      <span class="col-code">{{ account.code }}</span>
+                    </td>
+                    <td>
+                      <div style="font-size:13.5px;font-weight:500;color:#0f172a">
+                        {{ account.name }}
+                      </div>
+                    </td>
+                    <td>
+                      <span class="badge-type" [ngClass]="account.type">
+                        {{ account.type | titlecase }}
+                      </span>
+                    </td>
+                    <td class="text-right">
+                      <span class="col-amount">
+                        {{ account.balance | bdtCurrency }}
+                      </span>
+                    </td>
+                    <td class="text-center">
+                      <span
+                        class="badge-status"
+                        [ngClass]="account.is_active ? 'active' : 'inactive'">
+                        {{ account.is_active ? 'Active' : 'Inactive' }}
+                      </span>
+                    </td>
+                    <td>
+                      <div class="action-group">
+                        <button
+                          class="btn-primary-erp btn-outline-erp--sm"
+                          title="Edit"
+                          (click)="onEdit(account)">
+                          <i class="bi bi-pencil"></i>
+                          Edit
+                        </button>
+                        <button
+                          class="btn-danger-erp btn-danger-erp--sm"
+                          title="Delete"
+                          (click)="onDeleteConfirm(account)">
+                          <i class="bi bi-trash3"></i>
+                          Delete
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                }
+              }
+            </tbody>
+          </table>
+        </div>
+        ...
+      </div>
 
         <!-- Pagination -->
         @if (filteredAccounts().length > pageSize) {
