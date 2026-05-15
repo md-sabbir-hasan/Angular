@@ -38,7 +38,7 @@ import { AuthService } from '../../core/services/auth';
         <!-- Notifications -->
         <div class="icon-btn" title="Notifications">
           <i class="bi bi-bell"></i>
-          <span class="notif-dot"></span>
+          <span class="notif-dot"></span>N
         </div>
 
         <!-- User dropdown -->

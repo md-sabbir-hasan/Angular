@@ -577,6 +577,22 @@
       "vat_amount": 30000,
       "total_amount": 229999.95,
       "paid_amount": 0
+    },
+    {
+      "id": "tzdEGgttXAQ",
+      "tenant_id": "t1",
+      "invoice_number": "INV-2026-1576",
+      "customer_id": "party-006",
+      "invoice_date": "2026-05-27",
+      "due_date": "2026-06-18",
+      "status": "paid",
+      "currency": "USD",
+      "subtotal": 5000,
+      "discount_amount": 0,
+      "taxable_amount": 5000,
+      "vat_amount": 250,
+      "total_amount": 5250,
+      "paid_amount": 0
     }
   ],
   "invoice_items": [
@@ -924,7 +940,7 @@
       "employee_name": "Nasrin Akter",
       "claim_date": "2024-07-20",
       "total_amount": 8750,
-      "status": "submitted"
+      "status": "approved"
     },
     {
       "id": "exp-003",
