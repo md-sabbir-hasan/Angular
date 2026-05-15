@@ -10,4 +10,5 @@ export class CurrencyPipe implements PipeTransform {
     if (value === null || value === undefined) return '৳0.00';
     return formatCurrency(value, '৳', decimals);
   }
+  
 }

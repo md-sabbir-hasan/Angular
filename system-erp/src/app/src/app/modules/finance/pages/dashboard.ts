@@ -5,11 +5,11 @@ import { ReportCardComponent } from '../components/report-card';
 import { FinanceChartComponent } from '../components/finance-chart';
 import { PageHeaderComponent } from '../../../shared/components/page-header';
 import { StatusPipe } from '../../../shared/pipes/status-pipe';
-import { CurrencyPipe } from '../../../shared/pipes/currency-pipe';
 import { DashboardStats, ReportService } from '../services/report';
 import { InvoiceService } from '../services/invoice';
 import { Invoice } from '../models/invoice.model';
 import { formatDate } from '../../../core/utils/date.util';
+import { CurrencyPipe } from '../../../shared/pipes/currency-pipe';
 
 
 @Component({
