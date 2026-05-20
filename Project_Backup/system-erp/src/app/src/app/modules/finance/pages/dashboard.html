@@ -1,0 +1,308 @@
+<div class="fade-in">
+
+  <!-- Page Header -->
+  <app-page-header
+    title="Financial Dashboard"
+    subtitle="Overview of your financial performance">
+    <button
+      class="btn-outline-erp"
+      (click)="loadData()">
+      <i class="bi bi-arrow-clockwise"></i>
+      Refresh
+    </button>
+    <button class="btn-primary-erp">
+      <i class="bi bi-download"></i>
+      Export
+    </button>
+  </app-page-header>
+
+  <!-- Welcome bar -->
+  <div class="dashboard__welcome-bar mb-20">
+    <div>
+      <h3>Good {{ greeting }}, {{ userName }}</h3>
+      <p>
+        Here's your financial summary for
+        {{ currentPeriod }}
+      </p>
+    </div>
+    <div class="date-badge">
+      <i class="bi bi-calendar3 me-1"></i>
+      {{ today }}
+    </div>
+  </div>
+
+  <!-- Stat Cards -->
+  @if (loading()) {
+    <div class="stats-grid mb-20">
+      @for (i of [1,2,3,4]; track i) {
+        <div class="stat-card">
+          <div class="skeleton mb-8" style="height:12px;width:80px"></div>
+          <div class="skeleton mb-8" style="height:28px;width:140px"></div>
+          <div class="skeleton" style="height:12px;width:100px"></div>
+        </div>
+      }
+    </div>
+  } @else if (stats()) {
+    <div class="stats-grid mb-20">
+      <app-report-card
+        label="Total Revenue"
+        [value]="stats()!.totalRevenue"
+        icon="bi-graph-up-arrow"
+        variant="stat-card--revenue"
+        [change]="12.5"
+        [isCurrency]="true"/>
+
+      <app-report-card
+        label="Cash & Bank"
+        [value]="stats()!.cashBalance"
+        icon="bi-bank"
+        variant="stat-card--cash"
+        [change]="5.2"
+        [isCurrency]="true"/>
+
+      <app-report-card
+        label="Receivables"
+        [value]="stats()!.receivables"
+        icon="bi-receipt"
+        variant="stat-card--receivable"
+        subtitle="Outstanding invoices"
+        [isCurrency]="true"/>
+
+      <app-report-card
+        label="VAT Payable"
+        [value]="stats()!.vatPayable"
+        icon="bi-percent"
+        variant="stat-card--vat"
+        subtitle="NBR VAT due"
+        [isCurrency]="true"/>
+    </div>
+  }
+
+  <!-- Charts Row -->
+  <div class="content-grid mb-20">
+
+    <!-- Revenue vs Expense Chart -->
+    <app-finance-chart
+      title="Revenue vs Expenses"
+      subtitle="Last 6 months"
+      type="bar"
+      [chartData]="revenueChartData()"/>
+
+    <!-- P&L Summary -->
+    @if (stats()) {
+      <div class="erp-card">
+        <div class="erp-card__header">
+          <div class="erp-card__header-left">
+            <h5>P&L Summary</h5>
+            <p>{{ currentPeriod }}</p>
+          </div>
+          <span class="badge-status posted">Live</span>
+        </div>
+        <div class="erp-card__body">
+
+          <div class="pl-row">
+            <span class="pl-label">Total Revenue</span>
+            <span class="pl-value text-success-color">
+              {{ stats()!.totalRevenue | bdtCurrency }}
+            </span>
+          </div>
+          <div class="pl-row">
+            <span class="pl-label">Total Expenses</span>
+            <span class="pl-value text-danger-color">
+              {{ stats()!.totalExpenses | bdtCurrency }}
+            </span>
+          </div>
+          <div class="pl-divider"></div>
+          <div class="pl-row pl-row--total">
+            <span class="pl-label">Net Profit</span>
+            <span
+              class="pl-value"
+              [class.text-success-color]="stats()!.netProfit >= 0"
+              [class.text-danger-color]="stats()!.netProfit < 0">
+              {{ stats()!.netProfit | bdtCurrency }}
+            </span>
+          </div>
+
+          <div class="profit-bar mt-16">
+            <div class="profit-bar__label">
+              <span>Profit Margin</span>
+              <span>
+                {{ profitMargin() | number:'1.1-1' }}%
+              </span>
+            </div>
+            <div class="progress-thin">
+              <div
+                class="bar"
+                [style.width.%]="profitMargin()"
+                [style.background]="
+                  profitMargin() > 20
+                    ? '#059669'
+                    : profitMargin() > 10
+                      ? '#e8a020'
+                      : '#dc2626'
+                ">
+              </div>
+            </div>
+          </div>
+
+          <div class="kpi-grid mt-16">
+            <div class="kpi-item">
+              <div class="kpi-value">
+                {{ stats()!.totalAssets | bdtCurrency }}
+              </div>
+              <div class="kpi-label">Total Assets</div>
+            </div>
+            <div class="kpi-item">
+              <div class="kpi-value">
+                {{ stats()!.payables | bdtCurrency }}
+              </div>
+              <div class="kpi-label">Payables</div>
+            </div>
+            <div class="kpi-item">
+              <div class="kpi-value">
+                {{ stats()!.vatPayable | bdtCurrency }}
+              </div>
+              <div class="kpi-label">VAT Due</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    }
+  </div>
+
+  <!-- Bottom Row -->
+  <div class="content-grid">
+
+    <!-- Recent Invoices -->
+    <div class="erp-card">
+      <div class="erp-card__header">
+        <div class="erp-card__header-left">
+          <h5>Recent Invoices</h5>
+          <p>Latest billing activity</p>
+        </div>
+        
+         <a routerLink="/finance/invoices"
+          class="btn-outline-erp btn-outline-erp--sm">
+          View All
+        </a>
+      </div>
+      <div class="erp-card__body p-0">
+        @if (invoicesLoading()) {
+          <div class="p-20">
+            @for (i of [1,2,3]; track i) {
+              <div class="skeleton mb-8"
+                style="height:40px;border-radius:8px">
+              </div>
+            }
+          </div>
+        } @else {
+          <div class="table-wrapper">
+            <table class="erp-table">
+              <thead>
+                <tr>
+                  <th>Invoice</th>
+                  <th>Customer</th>
+                  <th>Amount</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                @for (inv of recentInvoices(); track inv.id) {
+                  <tr
+                    class="cursor-pointer"
+                    [routerLink]="['/finance/invoices']">
+                    <td>
+                      <span class="col-code">
+                        {{ inv.invoice_number }}
+                      </span>
+                    </td>
+                    <td>
+                      <div style="font-size:13px;font-weight:500">
+                        {{ inv.customer_name }}
+                      </div>
+                      <div style="font-size:11px;color:#94a3b8">
+                        {{ formatDate(inv.invoice_date) }}
+                      </div>
+                    </td>
+                    <td>
+                      <span class="col-amount">
+                        {{ inv.total_amount | bdtCurrency }}
+                      </span>
+                    </td>
+                    <td>
+                      <span
+                        class="badge-status"
+                        [ngClass]="inv.status">
+                        {{ inv.status | statusLabel }}
+                      </span>
+                    </td>
+                  </tr>
+                }
+              </tbody>
+            </table>
+          </div>
+        }
+      </div>
+    </div>
+
+    <!-- Quick Actions + Account Summary -->
+    <div class="d-flex flex-col gap-16">
+
+      <!-- Quick Actions -->
+      <div class="erp-card">
+        <div class="erp-card__header">
+          <div class="erp-card__header-left">
+            <h5>Quick Actions</h5>
+          </div>
+        </div>
+        <div class="erp-card__body">
+          <div class="quick-actions">
+            @for (action of quickActions; track action.label) {
+              
+              <a  [routerLink]="action.route"
+                class="quick-action-btn">
+                <div
+                  class="qa-icon"
+                  [style.background]="action.bg"
+                  [style.color]="action.color">
+                  <i class="bi" [ngClass]="action.icon"></i>
+                </div>
+                <span>{{ action.label }}</span>
+                <i class="bi bi-chevron-right qa-arrow"></i>
+              </a>
+            }
+          </div>
+        </div>
+      </div>
+
+      <!-- Account type breakdown -->
+      <div class="erp-card">
+        <div class="erp-card__header">
+          <div class="erp-card__header-left">
+            <h5>Account Breakdown</h5>
+          </div>
+        </div>
+        <div class="erp-card__body">
+          @for (item of accountBreakdown; track item.label) {
+            <div class="breakdown-row">
+              <div class="breakdown-left">
+                <div
+                  class="breakdown-dot"
+                  [style.background]="item.color">
+                </div>
+                <span class="breakdown-label">{{ item.label }}</span>
+              </div>
+              <span class="breakdown-value">
+                {{ item.value | bdtCurrency }}
+              </span>
+            </div>
+          }
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

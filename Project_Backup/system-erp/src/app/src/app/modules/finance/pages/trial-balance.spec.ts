@@ -1,0 +1,22 @@
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+
+import { TrialBalanceComponent } from './trial-balance';
+
+describe('TrialBalanceComponent', () => {
+  let component: TrialBalanceComponent;
+  let fixture: ComponentFixture<TrialBalanceComponent>;
+
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      imports: [TrialBalanceComponent],
+    }).compileComponents();
+
+    fixture = TestBed.createComponent(TrialBalanceComponent);
+    component = fixture.componentInstance;
+    await fixture.whenStable();
+  });
+
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+});

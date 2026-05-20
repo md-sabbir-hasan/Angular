@@ -1,0 +1,106 @@
+<div class="sb" [class.sb--collapsed]="collapsed" [class.sb--open]="mobileOpen">
+
+  <!-- Logo -->
+  <div class="sb-logo">
+    <div class="sb-logo-icon">
+      <i class="bi bi-currency-exchange"></i>
+    </div>
+    <div class="sb-logo-text">
+      <b>FinanceERP</b>
+      <small>BD SME Platform</small>
+    </div>
+  </div>
+
+  <!-- Nav -->
+  <nav class="sb-nav">
+
+    <div class="sb-label">Finance</div>
+
+    <div *ngIf="perm.hasPermission('dashboard:view')"
+      class="sb-item" [class.sb-item--active]="active('/finance/dashboard')"
+      (click)="go('/finance/dashboard')">
+      <i class="bi bi-speedometer2"></i>
+      <span>Dashboard</span>
+    </div>
+
+    <div *ngIf="perm.hasPermission('chart_of_accounts:view')"
+      class="sb-item" [class.sb-item--active]="active('/finance/chart-of-accounts')"
+      (click)="go('/finance/chart-of-accounts')">
+      <i class="bi bi-diagram-3"></i>
+      <span>Chart of Accounts</span>
+    </div>
+
+    <div *ngIf="perm.hasPermission('journal:view')"
+      class="sb-item" [class.sb-item--active]="active('/finance/journal-entry')"
+      (click)="go('/finance/journal-entry')">
+      <i class="bi bi-journal-text"></i>
+      <span>Journal Entry</span>
+    </div>
+
+    <div *ngIf="perm.hasPermission('ledger:view')"
+      class="sb-item" [class.sb-item--active]="active('/finance/ledger')"
+      (click)="go('/finance/ledger')">
+      <i class="bi bi-book"></i>
+      <span>Ledger</span>
+    </div>
+
+    <div *ngIf="perm.hasPermission('trial_balance:view')"
+      class="sb-item" [class.sb-item--active]="active('/finance/trial-balance')"
+      (click)="go('/finance/trial-balance')">
+      <i class="bi bi-bar-chart-steps"></i>
+      <span>Trial Balance</span>
+    </div>
+
+    <div *ngIf="perm.hasPermission('invoices:view')"
+      class="sb-item" [class.sb-item--active]="active('/finance/invoices')"
+      (click)="go('/finance/invoices')">
+      <i class="bi bi-receipt"></i>
+      <span>Invoices</span>
+    </div>
+
+    <div *ngIf="perm.hasPermission('expenses:view')"
+      class="sb-item" [class.sb-item--active]="active('/finance/expenses')"
+      (click)="go('/finance/expenses')">
+      <i class="bi bi-wallet2"></i>
+      <span>Expenses</span>
+    </div>
+
+    <div *ngIf="perm.hasPermission('reports:view')"
+      class="sb-item" [class.sb-item--active]="active('/finance/reports')"
+      (click)="go('/finance/reports')">
+      <i class="bi bi-file-earmark-bar-graph"></i>
+      <span>Reports</span>
+    </div>
+
+    <div *ngIf="perm.hasPermission('settings:view') || perm.hasPermission('users:view')"
+      class="sb-label">System</div>
+
+    <div *ngIf="perm.hasPermission('settings:view')"
+      class="sb-item" [class.sb-item--active]="active('/settings')"
+      (click)="go('/settings')">
+      <i class="bi bi-gear"></i>
+      <span>Settings</span>
+    </div>
+
+    <div *ngIf="perm.hasPermission('users:view')"
+      class="sb-item" [class.sb-item--active]="active('/users')"
+      (click)="go('/users')">
+      <i class="bi bi-people"></i>
+      <span>Users</span>
+    </div>
+
+  </nav>
+
+  <!-- User -->
+  <div class="sb-user">
+    <div class="sb-avatar">{{ initials }}</div>
+    <div class="sb-user-info">
+      <p>{{ auth.userName() }}</p>
+      <small class="badge bg-warning text-dark">{{ auth.userRole()?.toLowerCase() | titlecase }}</small>
+    </div>
+    <button class="sb-logout" (click)="auth.logout()">
+      <i class="bi bi-box-arrow-right"></i>
+    </button>
+  </div>
+
+</div>

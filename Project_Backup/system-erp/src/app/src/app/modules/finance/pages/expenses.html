@@ -1,0 +1,369 @@
+<div class="fade-in">
+
+  <!-- Page Header -->
+  <app-page-header
+    title="Expense Claims"
+    subtitle="Manage employee expense claims and reimbursements"
+    [breadcrumbs]="[
+      { label: 'Finance', route: '/finance/dashboard' },
+      { label: 'Expenses' }
+    ]">
+    <button
+      class="btn-outline-erp"
+      (click)="exportExpenses()">
+      <i class="bi bi-download"></i>
+      Export
+    </button>
+    <button
+      *appHasPermission="'expenses:create'"
+      class="btn-primary-erp"
+      (click)="showForm.set(true)">
+      <i class="bi bi-plus-lg"></i>
+      New Claim
+    </button>
+  </app-page-header>
+
+
+  <!-- Summary Cards -->
+  <div class="stats-grid mb-20">
+    <div class="stat-card stat-card--expense">
+      <div class="stat-card__label">Total Claims</div>
+      <div class="stat-card__value">
+        {{ summary().total }}
+      </div>
+      <div class="stat-card__change neutral">
+        All time
+      </div>
+      <div class="stat-card__icon">
+        <i class="bi bi-wallet2"></i>
+      </div>
+    </div>
+    <div class="stat-card stat-card--vat">
+      <div class="stat-card__label">Pending Approval</div>
+      <div class="stat-card__value">
+        {{ summary().pending }}
+      </div>
+      <div class="stat-card__change neutral">
+        {{ summary().pendingAmount | bdtCurrency }}
+      </div>
+      <div class="stat-card__icon">
+        <i class="bi bi-hourglass-split"></i>
+      </div>
+    </div>
+    <div class="stat-card stat-card--revenue">
+      <div class="stat-card__label">Approved</div>
+      <div class="stat-card__value">
+        {{ summary().approved }}
+      </div>
+      <div class="stat-card__change up">
+        <i class="bi bi-check-circle"></i>
+        Ready to pay
+      </div>
+      <div class="stat-card__icon">
+        <i class="bi bi-check-circle"></i>
+      </div>
+    </div>
+    <div class="stat-card stat-card--cash">
+      <div class="stat-card__label">Total Amount</div>
+      <div class="stat-card__value">
+        {{ summary().totalAmount | bdtCurrency }}
+      </div>
+      <div class="stat-card__change neutral">
+        All claims
+      </div>
+      <div class="stat-card__icon">
+        <i class="bi bi-currency-exchange"></i>
+      </div>
+    </div>
+  </div>
+
+  <!-- Filter Bar -->
+  <div class="erp-card mb-16">
+    <div class="erp-card__body">
+      <div class="filter-bar">
+        <div class="filter-bar__left">
+          <div class="search-box">
+            <i class="bi bi-search"></i>
+            <input
+              type="text"
+              placeholder="Search claim, employee..."
+              [ngModel]="searchQuery()"
+              (ngModelChange)="searchQuery.set($event); onSearch()"/>
+          </div>
+          <select
+            class="form-select"
+            style="width:160px;height:36px"
+            [ngModel]="selectedStatus()"
+            (ngModelChange)="selectedStatus.set($event); applyFilters()">
+            <option value="">All Status</option>
+            @for (s of statusOptions; track s.value) {
+              <option [value]="s.value">{{ s.label }}</option>
+            }
+          </select>
+          <input
+            type="date"
+            class="form-control"
+            style="width:150px;height:36px"
+            [ngModel]="fromDate()"
+            (ngModelChange)="fromDate.set($event); applyFilters()"/>
+          <input
+            type="date"
+            class="form-control"
+            style="width:150px;height:36px"
+            [ngModel]="toDate()"
+            (ngModelChange)="toDate.set($event); applyFilters()"/>
+        </div>
+        <div class="filter-bar__right">
+          @if (searchQuery() || selectedStatus() || fromDate() || toDate()) {
+            <button
+              class="btn-outline-erp btn-outline-erp--sm"
+              (click)="resetFilters()">
+              <i class="bi bi-x-circle"></i>
+              Clear
+            </button>
+          }
+          <span class="result-count">
+            {{ filteredClaims().length }} claims
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Expenses Table -->
+  <div class="erp-card">
+    <div class="table-wrapper">
+      <table class="erp-table">
+        <thead>
+          <tr>
+            <th>Claim #</th>
+            <th>Employee</th>
+            <th>Date</th>
+            <th class="text-right">Amount</th>
+            <th class="text-center">Status</th>
+            <th class="text-right sticky-actions">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          @if (loading()) {
+            @for (i of [1,2,3,4,5]; track i) {
+              <tr>
+                @for (j of [1,2,3,4,5,6]; track j) {
+                  <td>
+                    <div class="skeleton"
+                      style="height:14px;border-radius:4px">
+                    </div>
+                  </td>
+                }
+              </tr>
+            }
+          } @else if (paginatedClaims().length === 0) {
+            <tr>
+              <td colspan="6">
+                <div class="table-empty">
+                  <i class="bi bi-wallet2"></i>
+                  <p>No expense claims found</p>
+                  <small>Create a new claim to get started</small>
+                </div>
+              </td>
+            </tr>
+          } @else {
+            @for (claim of paginatedClaims(); track claim.id) {
+              <tr>
+                <td>
+                  <span class="col-code">
+                    {{ claim.claim_number }}
+                  </span>
+                </td>
+                <td>
+                  <div class="emp-info">
+                    <div class="emp-avatar">
+                      {{ claim.employee_name.charAt(0) }}
+                    </div>
+                    <div>
+                      <div class="emp-name">
+                        {{ claim.employee_name }}
+                      </div>
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <span class="col-date">
+                    {{ formatDate(claim.claim_date) }}
+                  </span>
+                </td>
+                <td class="text-right">
+                  <span class="col-amount">
+                    {{ claim.total_amount | bdtCurrency }}
+                  </span>
+                </td>
+                <td class="text-center">
+                  <span
+                    class="badge-status"
+                    [ngClass]="claim.status">
+                    {{ claim.status | statusLabel }}
+                  </span>
+                </td>
+                <td class="text-right sticky-actions">
+                  <div class="action-group">
+                    <button
+                      class="btn-icon btn-icon--primary"
+                      title="View Details"
+                      (click)="notification.info('Detail view coming soon')">
+                      <i class="bi bi-eye"></i>
+                    </button>
+                    @if (claim.status === 'submitted') {
+                      <button
+                        class="btn-icon btn-icon--success"
+                        title="Approve"
+                        (click)="updateStatus(claim, 'approved')">
+                        <i class="bi bi-check-lg"></i>
+                      </button>
+                      <button
+                        class="btn-icon btn-icon--danger"
+                        title="Reject"
+                        (click)="updateStatus(claim, 'rejected')">
+                        <i class="bi bi-x-lg"></i>
+                      </button>
+                    }
+                    @if (claim.status === 'draft') {
+                      <button
+                        class="btn-icon btn-icon--primary"
+                        title="Submit"
+                        (click)="updateStatus(claim, 'submitted')">
+                        <i class="bi bi-send"></i>
+                      </button>
+                    }
+                    @if (claim.status === 'approved') {
+                      <button
+                        class="btn-icon btn-icon--success"
+                        title="Mark Paid"
+                        (click)="updateStatus(claim, 'paid')">
+                        <i class="bi bi-cash"></i>
+                      </button>
+                    }
+                    @if (
+                      claim.status === 'draft' ||
+                      claim.status === 'rejected'
+                    ) {
+                      <button
+                        *appHasPermission="'expenses:delete'"
+                        class="btn-icon btn-icon--danger"
+                        title="Delete"
+                        (click)="confirmDelete(claim)">
+                        <i class="bi bi-trash3"></i>
+                      </button>
+                    }
+                  </div>
+                </td>
+
+              </tr>
+            }
+          }
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Pagination -->
+    @if (filteredClaims().length > pageSize) {
+      <div class="erp-pagination">
+        <span class="page-info">
+          Showing {{ startItem }}–{{ endItem }}
+          of {{ filteredClaims().length }} claims
+        </span>
+        <div class="page-controls">
+          <button
+            (click)="prevPage()"
+            [disabled]="currentPage() === 1">
+            <i class="bi bi-chevron-left"></i>
+          </button>
+          @for (p of pages(); track p) {
+            <button
+              [class.active]="p === currentPage()"
+              (click)="goToPage(p)">
+              {{ p }}
+            </button>
+          }
+          <button
+            (click)="nextPage()"
+            [disabled]="currentPage() === totalPages()">
+            <i class="bi bi-chevron-right"></i>
+          </button>
+        </div>
+      </div>
+    }
+  </div>
+
+  <!-- New Claim Modal -->
+  <app-modal
+    [isOpen]="showForm()"
+    title="New Expense Claim"
+    icon="bi-wallet2"
+    size="md"
+    [showFooter]="true"
+    (closed)="showForm.set(false)">
+
+    <div class="form-group">
+      <label>Employee Name <span class="required">*</span></label>
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Full name"
+        [(ngModel)]="newClaim.employee_name"/>
+    </div>
+    <div class="form-group">
+      <label>Claim Date <span class="required">*</span></label>
+      <input
+        type="date"
+        class="form-control"
+        [(ngModel)]="newClaim.claim_date"/>
+    </div>
+    <div class="form-group">
+      <label>Total Amount (৳) <span class="required">*</span></label>
+      <input
+        type="number"
+        class="form-control"
+        placeholder="0.00"
+        [(ngModel)]="newClaim.total_amount"
+        min="0"/>
+    </div>
+    <div class="form-group">
+      <label>Notes</label>
+      <textarea
+        class="form-control"
+        rows="2"
+        placeholder="Expense details..."
+        [(ngModel)]="newClaim.notes">
+      </textarea>
+    </div>
+
+    <div slot="footer" class="d-flex gap-8 w-full">
+      <button
+        class="btn-outline-erp flex-1"
+        (click)="showForm.set(false)">
+        Cancel
+      </button>
+      <button
+        class="btn-primary-erp flex-1"
+        [disabled]="
+          !newClaim.employee_name ||
+          !newClaim.total_amount
+        "
+        (click)="onSave()">
+        <i class="bi bi-plus-lg"></i>
+        Create Claim
+      </button>
+    </div>
+  </app-modal>
+
+  <!-- Confirm Delete -->
+  <app-confirm-dialog
+    [isOpen]="showConfirm()"
+    title="Delete Expense Claim"
+    message="Are you sure you want to delete this claim?"
+    confirmText="Delete"
+    type="danger"
+    (confirmed)="onDelete()"
+    (cancelled)="showConfirm.set(false)"/>
+
+</div>

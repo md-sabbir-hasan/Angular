@@ -1,0 +1,25 @@
+/* ============================================================
+   ERP System Global Styles Entrypoint
+   ============================================================ */
+
+@import './styles/themes/default.css';
+@import './styles/base/reset.css';
+@import './styles/base/typography.css';
+@import './styles/base/animations.css';
+@import './styles/layout/sidebar.css';
+@import './styles/layout/navbar.css';
+@import './styles/layout/footer.css';
+@import './styles/layout/grid.css';
+@import './styles/components/buttons.css';
+@import './styles/components/cards.css';
+@import './styles/components/tables.css';
+@import './styles/components/forms.css';
+@import './styles/components/badges.css';
+@import './styles/components/modals.css';
+@import './styles/components/alerts.css';
+@import './styles/components/loader.css';
+@import './styles/pages/auth.css';
+@import './styles/pages/dashboard.css';
+@import './styles/pages/finance.css';
+@import './styles/utilities/spacing.css';
+@import './styles/utilities/helpers.css';
