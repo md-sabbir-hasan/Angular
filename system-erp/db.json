@@ -593,6 +593,22 @@
       "vat_amount": 250,
       "total_amount": 5250,
       "paid_amount": 0
+    },
+    {
+      "id": "L_-If3bu6f0",
+      "tenant_id": "t1",
+      "invoice_number": "INV-2026-6845",
+      "customer_id": "party-006",
+      "invoice_date": "2026-05-26",
+      "due_date": "2026-06-19",
+      "status": "paid",
+      "currency": "BDT",
+      "subtotal": 12650,
+      "discount_amount": 0,
+      "taxable_amount": 12650,
+      "vat_amount": 1897.5,
+      "total_amount": 14547.5,
+      "paid_amount": 0
     }
   ],
   "invoice_items": [
@@ -930,7 +946,7 @@
       "employee_name": "Karim Uddin",
       "claim_date": "2024-07-10",
       "total_amount": 12500,
-      "status": "approved"
+      "status": "paid"
     },
     {
       "id": "exp-002",
@@ -940,7 +956,7 @@
       "employee_name": "Nasrin Akter",
       "claim_date": "2024-07-20",
       "total_amount": 8750,
-      "status": "approved"
+      "status": "paid"
     },
     {
       "id": "exp-003",
@@ -950,7 +966,17 @@
       "employee_name": "Rafiqul Islam",
       "claim_date": "2024-07-28",
       "total_amount": 5200,
-      "status": "draft"
+      "status": "paid"
+    },
+    {
+      "employee_name": "sabbir",
+      "claim_date": "2026-05-16",
+      "total_amount": 12500,
+      "notes": "fgbfdfsd",
+      "id": "WYhUI0H4eQ4",
+      "tenant_id": "t1",
+      "claim_number": "EXP-202605-996773",
+      "status": "paid"
     }
   ],
   "ledger_entries": [
