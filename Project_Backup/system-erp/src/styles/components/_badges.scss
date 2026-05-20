@@ -1,0 +1,141 @@
+// ============================================================
+// Badges
+// ============================================================
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
+
+.badge-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 10px;
+  border-radius: $radius-full;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  white-space: nowrap;
+
+  &::before {
+    content: '';
+    width: 5px;
+    height: 5px;
+    border-radius: $radius-full;
+    background: currentColor;
+    flex-shrink: 0;
+  }
+
+  &.paid,
+  &.posted,
+  &.completed,
+  &.deposited,
+  &.active {
+    @include badge($success-bg, $success);
+  }
+
+  &.draft {
+    @include badge(#f1f5f9, $text-muted);
+  }
+
+  &.sent,
+  &.received,
+  &.submitted,
+  &.processing {
+    @include badge($info-bg, $info);
+  }
+
+  &.partial,
+  &.pending {
+    @include badge($warning-bg, $warning);
+  }
+
+  &.overdue,
+  &.failed,
+  &.cancelled,
+  &.rejected,
+  &.inactive {
+    @include badge($danger-bg, $danger);
+  }
+
+  &.approved {
+    @include badge(#f0fdf4, #15803d);
+  }
+
+  &.output {
+    @include badge($primary-50, $primary-light);
+  }
+
+  &.input {
+    @include badge($accent-light, #a16207);
+  }
+}
+
+.badge-type {
+  display: inline-flex;
+  padding: 2px 8px;
+  border-radius: $radius-sm;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+
+  &.asset {
+    @include badge($info-bg, $info);
+  }
+
+  &.liability {
+    @include badge($danger-bg, $danger);
+  }
+
+  &.equity {
+    @include badge($warning-bg, $warning);
+  }
+
+  &.revenue {
+    @include badge($success-bg, $success);
+  }
+
+  &.expense {
+    @include badge(#fdf4ff, #7e22ce);
+  }
+}
+
+.badge-method {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 8px;
+  border-radius: $radius-sm;
+  font-size: 11px;
+  font-weight: 600;
+
+  &.bkash {
+    background: #fce7f3;
+    color: #be185d;
+  }
+
+  &.nagad {
+    background: #fff7ed;
+    color: #c2410c;
+  }
+
+  &.rocket {
+    background: #f5f3ff;
+    color: #6d28d9;
+  }
+
+  &.bank_transfer {
+    @include badge($info-bg, $info);
+  }
+
+  &.cheque {
+    @include badge(#f1f5f9, $text-muted);
+  }
+
+  &.cash {
+    @include badge($success-bg, $success);
+  }
+
+  &.card {
+    @include badge($primary-50, $primary-light);
+  }
+}

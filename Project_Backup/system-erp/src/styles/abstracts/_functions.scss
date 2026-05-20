@@ -1,0 +1,11 @@
+// ============================================================
+// Functions
+// ============================================================
+
+@function rem($px, $base: 16) {
+    @return calc($px / $base) * 1rem;
+}
+
+@function alpha($color, $opacity) {
+    @return rgba($color, $opacity);
+}

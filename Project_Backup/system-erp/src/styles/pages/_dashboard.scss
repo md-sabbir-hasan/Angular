@@ -1,0 +1,28 @@
+// ============================================================
+// Dashboard
+// ============================================================
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
+
+.dashboard {
+  .chart-card {
+    @include card-base;
+    overflow: hidden;
+
+    &__header {
+      @include flex-between;
+      padding: 16px 20px;
+      border-bottom: 1px solid $border;
+
+      h6 {
+        font-size: 14px;
+        font-weight: 600;
+        margin: 0;
+      }
+    }
+
+    &__body {
+      padding: 16px;
+    }
+  }
+}

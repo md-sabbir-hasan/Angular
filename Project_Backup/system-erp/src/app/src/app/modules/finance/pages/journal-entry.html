@@ -1,0 +1,358 @@
+<div class="fade-in">
+
+  <!-- Page Header -->
+  <app-page-header
+    title="Journal Entries"
+    subtitle="Double-entry bookkeeping records"
+    [breadcrumbs]="[
+      { label: 'Finance', route: '/finance/dashboard' },
+      { label: 'Journal Entry' }
+    ]">
+    <button
+      class="btn-outline-erp"
+      (click)="exportJournal()">
+      <i class="bi bi-download"></i>
+      Export
+    </button>
+    <button
+      *appHasPermission="'journal:create'"
+      class="btn-primary-erp"
+      (click)="showForm.set(true)">
+      <i class="bi bi-plus-lg"></i>
+      New Entry
+    </button>
+  </app-page-header>
+
+
+  <!-- Summary Cards -->
+  <div class="row g-3 mb-20">
+    <div class="col-6 col-md-3">
+      <div class="je-stat-card">
+        <div class="je-stat-icon" style="background:#e8f0fa;color:#2563a8">
+          <i class="bi bi-journal-text"></i>
+        </div>
+        <div class="je-stat-body">
+          <div class="je-stat-value">{{ totalEntries() }}</div>
+          <div class="je-stat-label">Total Entries</div>
+        </div>
+      </div>
+    </div>
+    <div class="col-6 col-md-3">
+      <div class="je-stat-card">
+        <div class="je-stat-icon" style="background:#dcfce7;color:#166534">
+          <i class="bi bi-check-circle"></i>
+        </div>
+        <div class="je-stat-body">
+          <div class="je-stat-value">{{ postedEntries() }}</div>
+          <div class="je-stat-label">Posted</div>
+        </div>
+      </div>
+    </div>
+    <div class="col-6 col-md-3">
+      <div class="je-stat-card">
+        <div class="je-stat-icon" style="background:#fef9c3;color:#854d0e">
+          <i class="bi bi-pencil-square"></i>
+        </div>
+        <div class="je-stat-body">
+          <div class="je-stat-value">{{ draftEntries() }}</div>
+          <div class="je-stat-label">Drafts</div>
+        </div>
+      </div>
+    </div>
+    <div class="col-6 col-md-3">
+      <div class="je-stat-card">
+        <div class="je-stat-icon" style="background:#f5f3ff;color:#6d28d9">
+          <i class="bi bi-currency-exchange"></i>
+        </div>
+        <div class="je-stat-body">
+          <div class="je-stat-value">
+            {{ totalDebitAmount() | bdtCurrency }}
+          </div>
+          <div class="je-stat-label">Total Debits</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Filter Bar -->
+  <div class="erp-card mb-16">
+    <div class="erp-card__body">
+      <div class="filter-bar">
+        <div class="filter-bar__left">
+          <div class="search-box">
+            <i class="bi bi-search"></i>
+            <input
+              type="text"
+              placeholder="Search reference, narration..."
+              [ngModel]="searchQuery()"
+              (ngModelChange)="searchQuery.set($event); onSearch()"/>
+          </div>
+          <select
+            class="form-select"
+            style="width:150px;height:36px"
+            [ngModel]="selectedStatus()"
+            (ngModelChange)="selectedStatus.set($event); applyFilters()">
+            <option value="">All Status</option>
+            <option value="posted">Posted</option>
+            <option value="draft">Draft</option>
+            <option value="cancelled">Cancelled</option>
+          </select>
+          <select
+            class="form-select"
+            style="width:150px;height:36px"
+            [ngModel]="selectedType()"
+            (ngModelChange)="selectedType.set($event); applyFilters()">
+            <option value="">All Types</option>
+            @for (t of journalTypes; track t.value) {
+              <option [value]="t.value">{{ t.label }}</option>
+            }
+          </select>
+          <input
+            type="date"
+            class="form-control"
+            style="width:150px;height:36px"
+            [ngModel]="fromDate()"
+            (ngModelChange)="fromDate.set($event); applyFilters()"
+            placeholder="From date"/>
+          <input
+            type="date"
+            class="form-control"
+            style="width:150px;height:36px"
+            [ngModel]="toDate()"
+            (ngModelChange)="toDate.set($event); applyFilters()"
+            placeholder="To date"/>
+        </div>
+        <div class="filter-bar__right">
+          @if (searchQuery() || selectedStatus() || selectedType() || fromDate() || toDate()) {
+            <button
+              class="btn-outline-erp btn-outline-erp--sm"
+              (click)="resetFilters()">
+              <i class="bi bi-x-circle"></i>
+              Clear
+            </button>
+          }
+          <span class="result-count">
+            {{ filteredEntries().length }} entries
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Journal Table -->
+  <div class="erp-card">
+    <div class="table-wrapper">
+      <table class="erp-table">
+        <thead>
+          <tr>
+            <th>Reference</th>
+            <th>Date</th>
+            <th>Type</th>
+            <th>Narration</th>
+            <th class="text-right">Debit</th>
+            <th class="text-right">Credit</th>
+            <th class="text-center">Status</th>
+            <th class="text-right sticky-actions">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          @if (loading()) {
+            @for (i of [1,2,3,4,5]; track i) {
+              <tr>
+                @for (j of [1,2,3,4,5,6,7,8]; track j) {
+                  <td>
+                    <div class="skeleton"
+                      style="height:14px;border-radius:4px">
+                    </div>
+                  </td>
+                }
+              </tr>
+            }
+          } @else if (paginatedEntries().length === 0) {
+            <tr>
+              <td colspan="8">
+                <div class="table-empty">
+                  <i class="bi bi-journal-x"></i>
+                  <p>No journal entries found</p>
+                  <small>Create your first journal entry</small>
+                </div>
+              </td>
+            </tr>
+          } @else {
+            @for (entry of paginatedEntries(); track entry.id) {
+              <tr>
+                <td>
+                  <span class="col-code">
+                    {{ entry.reference }}
+                  </span>
+                </td>
+                <td>
+                  <span class="col-date">
+                    {{ formatDate(entry.entry_date) }}
+                  </span>
+                </td>
+                <td>
+                  <span class="badge-type asset">
+                    {{ getTypeLabel(entry.type) }}
+                  </span>
+                </td>
+                <td>
+                  <span style="font-size:13px;color:#0f172a">
+                    {{ entry.narration }}
+                  </span>
+                </td>
+                <td class="text-right">
+                  <span class="col-amount text-success-color">
+                    {{ getEntryDebit(entry.id) | bdtCurrency }}
+                  </span>
+                </td>
+                <td class="text-right">
+                  <span class="col-amount text-primary-color">
+                    {{ getEntryCredit(entry.id) | bdtCurrency }}
+                  </span>
+                </td>
+                <td class="text-center">
+                  <span
+                    class="badge-status"
+                    [ngClass]="entry.status">
+                    {{ entry.status | statusLabel }}
+                  </span>
+                </td>
+                <td class="text-right sticky-actions">
+                  <div class="action-group">
+                    <button
+                      class="btn-icon btn-icon--primary"
+                      title="View Lines"
+                      (click)="viewLines(entry)">
+                      <i class="bi bi-eye"></i>
+                    </button>
+                    @if (entry.status === 'draft') {
+                      <button
+                        class="btn-icon btn-icon--success"
+                        title="Post Entry"
+                        (click)="postEntry(entry)">
+                        <i class="bi bi-send-check"></i>
+                      </button>
+                      <button
+                        *appHasPermission="'journal:delete'"
+                        class="btn-icon btn-icon--danger"
+                        title="Delete"
+                        (click)="confirmDelete(entry)">
+                        <i class="bi bi-trash3"></i>
+                      </button>
+                    }
+                    @if (entry.status === 'posted') {
+                      <button
+                        class="btn-icon"
+                        title="Reverse Entry"
+                        (click)="reverseEntry(entry)">
+                        <i class="bi bi-arrow-counterclockwise"></i>
+                      </button>
+                    }
+                  </div>
+                </td>
+              </tr>
+
+              <!-- Expandable lines -->
+              @if (expandedEntry() === entry.id) {
+                <tr class="lines-row">
+                  <td colspan="8">
+                    <div class="lines-panel">
+                      <div class="lines-header">
+                        <i class="bi bi-list-ul"></i>
+                        Journal Lines —
+                        {{ entry.reference }}
+                      </div>
+                      <table class="lines-table">
+                        <thead>
+                          <tr>
+                            <th>Account</th>
+                            <th class="text-right">Debit (৳)</th>
+                            <th class="text-right">Credit (৳)</th>
+                            <th>Narration</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          @for (
+                            line of getLinesForEntry(entry.id);
+                            track line.id
+                          ) {
+                            <tr>
+                              <td>
+                                {{ getAccountName(line.account_id) }}
+                              </td>
+                              <td class="text-right text-mono">
+                                @if (line.debit > 0) {
+                                  {{ line.debit | bdtCurrency }}
+                                }
+                              </td>
+                              <td class="text-right text-mono">
+                                @if (line.credit > 0) {
+                                  {{ line.credit | bdtCurrency }}
+                                }
+                              </td>
+                              <td style="color:#64748b;font-size:13px">
+                                {{ line.narration }}
+                              </td>
+                            </tr>
+                          }
+                        </tbody>
+                      </table>
+                    </div>
+                  </td>
+                </tr>
+              }
+            }
+          }
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Pagination -->
+    @if (filteredEntries().length > pageSize) {
+      <div class="erp-pagination">
+        <span class="page-info">
+          Showing {{ startItem }}–{{ endItem }}
+          of {{ filteredEntries().length }} entries
+        </span>
+        <div class="page-controls">
+          <button
+            (click)="prevPage()"
+            [disabled]="currentPage() === 1">
+            <i class="bi bi-chevron-left"></i>
+          </button>
+          @for (p of pages(); track p) {
+            <button
+              [class.active]="p === currentPage()"
+              (click)="goToPage(p)">
+              {{ p }}
+            </button>
+          }
+          <button
+            (click)="nextPage()"
+            [disabled]="currentPage() === totalPages()">
+            <i class="bi bi-chevron-right"></i>
+          </button>
+        </div>
+      </div>
+    }
+  </div>
+
+  <!-- Journal Form Modal -->
+  <app-journal-form
+    [isOpen]="showForm()"
+    [accounts]="accounts()"
+    (saved)="onSave($event)"
+    (cancelled)="showForm.set(false)"/>
+
+  <!-- Confirm Delete -->
+  <app-confirm-dialog
+    [isOpen]="showConfirm()"
+    title="Delete Journal Entry"
+    message="Are you sure? This entry will be permanently deleted."
+    confirmText="Delete Entry"
+    type="danger"
+    (confirmed)="onDelete()"
+    (cancelled)="showConfirm.set(false)"/>
+
+</div>

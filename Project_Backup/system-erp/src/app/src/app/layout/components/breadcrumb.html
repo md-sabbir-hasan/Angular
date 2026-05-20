@@ -1,0 +1,17 @@
+<nav class="breadcrumb-nav">
+  <a routerLink="/finance/dashboard" class="bc-item">
+    <i class="bi bi-house"></i>
+  </a>
+  @for (crumb of breadcrumbs; track crumb.label; let last = $last) {
+    <span class="bc-sep">
+      <i class="bi bi-chevron-right"></i>
+    </span>
+    @if (!last && crumb.route) {
+      <a [routerLink]="crumb.route" class="bc-item">
+        {{ crumb.label }}
+      </a>
+    } @else {
+      <span class="bc-item active">{{ crumb.label }}</span>
+    }
+  }
+</nav>

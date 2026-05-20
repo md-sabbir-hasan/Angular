@@ -1,0 +1,132 @@
+<div class="chart-card">
+  <div class="chart-card__header">
+    <h6>{{ title }}</h6>
+    @if (subtitle) {
+      <span class="fs-12 text-muted-custom">{{ subtitle }}</span>
+    }
+  </div>
+  <div class="chart-card__body">
+    <!-- Simple bar chart using CSS -->
+    @if (type === 'bar') {
+      <div class="bar-chart">
+        @for (item of chartData; track item.label) {
+          <div class="bar-group">
+            <div class="bars">
+              @if (item.value2 !== undefined) {
+                <div
+                  class="bar bar--secondary"
+                  [style.height.%]="getBarHeight(item.value2)"
+                  [title]="item.label + ': ৳' + item.value2">
+                </div>
+              }
+              <div
+                class="bar bar--primary"
+                [style.height.%]="getBarHeight(item.value)"
+                [title]="item.label + ': ৳' + item.value">
+              </div>
+            </div>
+            <div class="bar-label">{{ item.label }}</div>
+          </div>
+        }
+      </div>
+    }
+
+    <!-- Donut chart using CSS -->
+    @if (type === 'donut') {
+      <div class="donut-chart">
+        <div class="donut-ring">
+          <div class="donut-hole">
+            <div class="donut-total">
+              {{ totalValue | number:'1.0-0' }}
+            </div>
+            <div class="donut-label">Total</div>
+          </div>
+        </div>
+        <div class="donut-legend">
+          @for (item of chartData; track item.label) {
+            <div class="legend-item">
+              <span
+                class="legend-dot"
+                [style.background]="item.color">
+              </span>
+              <span class="legend-label">{{ item.label }}</span>
+              <span class="legend-value">
+                {{ getPercent(item.value) }}%
+              </span>
+            </div>
+          }
+        </div>
+      </div>
+    }
+
+    <!-- Line chart using SVG -->
+    @if (type === 'line') {
+      <div class="line-chart">
+        <svg
+          viewBox="0 0 600 200"
+          xmlns="http://www.w3.org/2000/svg"
+          style="width:100%;height:200px">
+          <!-- Grid lines -->
+          @for (i of [0,1,2,3,4]; track i) {
+            <line
+              [attr.x1]="40"
+              [attr.y1]="40 + i * 32"
+              [attr.x2]="580"
+              [attr.y2]="40 + i * 32"
+              stroke="#f1f5f9"
+              stroke-width="1"/>
+          }
+          <!-- Line path -->
+          <polyline
+            [attr.points]="getLinePoints()"
+            fill="none"
+            stroke="#2563a8"
+            stroke-width="2.5"
+            stroke-linejoin="round"/>
+          <!-- Area fill -->
+          <polygon
+            [attr.points]="getAreaPoints()"
+            fill="url(#gradient)"
+            opacity="0.15"/>
+          <!-- Gradient def -->
+          <defs>
+            <linearGradient
+              id="gradient"
+              x1="0" y1="0"
+              x2="0" y2="1">
+              <stop
+                offset="0%"
+                stop-color="#2563a8"
+                stop-opacity="0.8"/>
+              <stop
+                offset="100%"
+                stop-color="#2563a8"
+                stop-opacity="0"/>
+            </linearGradient>
+          </defs>
+          <!-- Data points -->
+          @for (item of chartData; track $index; let i = $index) {
+            <circle
+              [attr.cx]="getPointX(i)"
+              [attr.cy]="getPointY(item.value)"
+              r="4"
+              fill="#fff"
+              stroke="#2563a8"
+              stroke-width="2"/>
+          }
+          <!-- X labels -->
+          @for (item of chartData; track $index; let i = $index) {
+            <text
+              [attr.x]="getPointX(i)"
+              [attr.y]="185"
+              text-anchor="middle"
+              font-size="10"
+              fill="#94a3b8">
+              {{ item.label }}
+            </text>
+          }
+        </svg>
+      </div>
+    }
+  </div>
+</div>

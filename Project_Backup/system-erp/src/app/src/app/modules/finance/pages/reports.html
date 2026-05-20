@@ -1,0 +1,699 @@
+<div class="fade-in">
+
+  <!-- Page Header -->
+  <app-page-header
+    title="Financial Reports"
+    subtitle="Profit & Loss, Balance Sheet, Cash Flow & VAT"
+    [breadcrumbs]="[
+      { label: 'Finance', route: '/finance/dashboard' },
+      { label: 'Reports' }
+    ]">
+    <button
+      class="btn-outline-erp"
+      (click)="exportCurrentReport()">
+      <i class="bi bi-download"></i>
+      Export
+    </button>
+    <button
+      class="btn-primary-erp"
+      (click)="loadCurrentReport()">
+      <i class="bi bi-arrow-clockwise"></i>
+      Refresh
+    </button>
+  </app-page-header>
+
+  <!-- Report Tabs -->
+  <div class="report-tabs mb-20">
+    @for (tab of reportTabs; track tab.value) {
+      <button
+        class="report-tab"
+        [class.active]="activeTab() === tab.value"
+        (click)="switchTab(tab.value)">
+        <i class="bi" [ngClass]="tab.icon"></i>
+        {{ tab.label }}
+      </button>
+    }
+  </div>
+
+  <!-- Period selector -->
+  <div class="erp-card mb-16">
+    <div class="erp-card__body">
+      <div class="filter-bar">
+        <div class="filter-bar__left">
+          <div class="form-group mb-0">
+            <label class="mb-0 me-8">Period</label>
+            <select
+              class="form-select"
+              style="width:180px;height:36px"
+              [(ngModel)]="selectedPeriod"
+              (ngModelChange)="loadCurrentReport()">
+              @for (p of periods; track p.value) {
+                <option [value]="p.value">{{ p.label }}</option>
+              }
+            </select>
+          </div>
+          <div class="form-group mb-0">
+            <label class="mb-0 me-8">From</label>
+            <input
+              type="date"
+              class="form-control"
+              style="width:150px;height:36px"
+              [(ngModel)]="fromDate"/>
+          </div>
+          <div class="form-group mb-0">
+            <label class="mb-0 me-8">To</label>
+            <input
+              type="date"
+              class="form-control"
+              style="width:150px;height:36px"
+              [(ngModel)]="toDate"/>
+          </div>
+        </div>
+        <div class="filter-bar__right">
+          <span class="period-badge">
+            <i class="bi bi-calendar3 me-1"></i>
+            {{ currentPeriod }}
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── P&L Report ─────────────────────────────────── -->
+  @if (activeTab() === 'pl') {
+    @if (loadingPL()) {
+      <div class="report-loading">
+        <div class="spinner-dark"></div>
+        <span>Generating P&L Report...</span>
+      </div>
+    } @else if (plReport()) {
+      <div class="content-grid mb-20">
+
+        <!-- P&L Summary -->
+        <div class="erp-card">
+          <div class="erp-card__header">
+            <div class="erp-card__header-left">
+              <h5>Profit & Loss Statement</h5>
+              <p>{{ currentPeriod }}</p>
+            </div>
+            <span
+              class="badge-status"
+              [ngClass]="plReport()!.netProfit >= 0
+                ? 'paid' : 'overdue'">
+              {{ plReport()!.netProfit >= 0 ? 'Profit' : 'Loss' }}
+            </span>
+          </div>
+          <div class="erp-card__body">
+
+            <!-- Revenue section -->
+            <div class="report-section">
+              <div class="report-section-title revenue">
+                <i class="bi bi-graph-up-arrow"></i>
+                Revenue
+              </div>
+              @for (item of plReport()!.revenue; track item.account) {
+                <div class="report-line">
+                  <span class="report-line-label">
+                    {{ item.account }}
+                  </span>
+                  <span class="report-line-value text-success-color">
+                    {{ item.amount | bdtCurrency }}
+                  </span>
+                </div>
+              }
+              <div class="report-subtotal">
+                <span>Total Revenue</span>
+                <span class="text-success-color">
+                  {{ plReport()!.totalRevenue | bdtCurrency }}
+                </span>
+              </div>
+            </div>
+
+            <div class="report-divider"></div>
+
+            <!-- Expense section -->
+            <div class="report-section">
+              <div class="report-section-title expense">
+                <i class="bi bi-receipt"></i>
+                Expenses
+              </div>
+              @for (item of plReport()!.expenses; track item.account) {
+                <div class="report-line">
+                  <span class="report-line-label">
+                    {{ item.account }}
+                  </span>
+                  <span class="report-line-value text-danger-color">
+                    {{ item.amount | bdtCurrency }}
+                  </span>
+                </div>
+              }
+              <div class="report-subtotal">
+                <span>Total Expenses</span>
+                <span class="text-danger-color">
+                  {{ plReport()!.totalExpenses | bdtCurrency }}
+                </span>
+              </div>
+            </div>
+
+            <div class="report-divider"></div>
+
+            <!-- Net Profit/Loss -->
+            <div
+              class="net-result"
+              [class.profit]="plReport()!.netProfit >= 0"
+              [class.loss]="plReport()!.netProfit < 0">
+              <span>
+                Net {{ plReport()!.netProfit >= 0
+                  ? 'Profit' : 'Loss' }}
+              </span>
+              <span class="net-value">
+                {{ plReport()!.netProfit | bdtCurrency }}
+              </span>
+            </div>
+
+            <!-- Margin -->
+            <div class="margin-bar mt-16">
+              <div class="margin-label">
+                <span>Profit Margin</span>
+                <span>{{ plMargin() | number:'1.1-1' }}%</span>
+              </div>
+              <div class="progress-thin">
+                <div
+                  class="bar"
+                  [style.width.%]="plMargin()"
+                  [style.background]="
+                    plMargin() > 20 ? '#059669'
+                    : plMargin() > 10 ? '#e8a020'
+                    : '#dc2626'
+                  ">
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- P&L Chart -->
+        <div>
+          <app-finance-chart
+            title="Revenue vs Expenses"
+            subtitle="Visual breakdown"
+            type="bar"
+            [chartData]="plChartData()"/>
+
+          <!-- KPI boxes -->
+          <div class="kpi-row mt-16">
+            <div class="kpi-box">
+              <div class="kpi-box-value text-success-color">
+                {{ plReport()!.totalRevenue | bdtCurrency }}
+              </div>
+              <div class="kpi-box-label">Revenue</div>
+            </div>
+            <div class="kpi-box">
+              <div class="kpi-box-value text-danger-color">
+                {{ plReport()!.totalExpenses | bdtCurrency }}
+              </div>
+              <div class="kpi-box-label">Expenses</div>
+            </div>
+            <div class="kpi-box">
+              <div
+                class="kpi-box-value"
+                [class.text-success-color]="
+                  plReport()!.netProfit >= 0
+                "
+                [class.text-danger-color]="
+                  plReport()!.netProfit < 0
+                ">
+                {{ plReport()!.netProfit | bdtCurrency }}
+              </div>
+              <div class="kpi-box-label">Net Profit</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    }
+  }
+
+  <!-- ── Balance Sheet ───────────────────────────────── -->
+  @if (activeTab() === 'bs') {
+    @if (loadingBS()) {
+      <div class="report-loading">
+        <div class="spinner-dark"></div>
+        <span>Generating Balance Sheet...</span>
+      </div>
+    } @else if (bsReport()) {
+      <div class="content-grid-3 mb-20">
+
+        <!-- Assets -->
+        <div class="erp-card">
+          <div class="erp-card__header">
+            <div class="erp-card__header-left">
+              <h5>Assets</h5>
+            </div>
+            <span class="badge-status sent">
+              {{ bsReport()!.totalAssets | bdtCurrency }}
+            </span>
+          </div>
+          <div class="erp-card__body">
+            @for (item of bsReport()!.assets; track item.account) {
+              <div class="bs-line">
+                <div class="bs-line-left">
+                  <span class="bs-code">{{ item.code }}</span>
+                  <span class="bs-name">{{ item.account }}</span>
+                </div>
+                <span class="bs-amount text-primary-color">
+                  {{ item.amount | bdtCurrency }}
+                </span>
+              </div>
+            }
+            <div class="bs-total">
+              <span>Total Assets</span>
+              <span class="text-primary-color">
+                {{ bsReport()!.totalAssets | bdtCurrency }}
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Liabilities -->
+        <div class="erp-card">
+          <div class="erp-card__header">
+            <div class="erp-card__header-left">
+              <h5>Liabilities</h5>
+            </div>
+            <span class="badge-status overdue">
+              {{ bsReport()!.totalLiabilities | bdtCurrency }}
+            </span>
+          </div>
+          <div class="erp-card__body">
+            @for (
+              item of bsReport()!.liabilities;
+              track item.account
+            ) {
+              <div class="bs-line">
+                <div class="bs-line-left">
+                  <span class="bs-code">{{ item.code }}</span>
+                  <span class="bs-name">{{ item.account }}</span>
+                </div>
+                <span class="bs-amount text-danger-color">
+                  {{ item.amount | bdtCurrency }}
+                </span>
+              </div>
+            }
+            <div class="bs-total">
+              <span>Total Liabilities</span>
+              <span class="text-danger-color">
+                {{ bsReport()!.totalLiabilities | bdtCurrency }}
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Equity -->
+        <div class="erp-card">
+          <div class="erp-card__header">
+            <div class="erp-card__header-left">
+              <h5>Equity</h5>
+            </div>
+            <span class="badge-status approved">
+              {{ bsReport()!.totalEquity | bdtCurrency }}
+            </span>
+          </div>
+          <div class="erp-card__body">
+            @for (item of bsReport()!.equity; track item.account) {
+              <div class="bs-line">
+                <div class="bs-line-left">
+                  <span class="bs-code">{{ item.code }}</span>
+                  <span class="bs-name">{{ item.account }}</span>
+                </div>
+                <span class="bs-amount text-success-color">
+                  {{ item.amount | bdtCurrency }}
+                </span>
+              </div>
+            }
+            <div class="bs-total">
+              <span>Total Equity</span>
+              <span class="text-success-color">
+                {{ bsReport()!.totalEquity | bdtCurrency }}
+              </span>
+            </div>
+          </div>
+
+          <!-- Balance check -->
+          <div class="erp-card__footer">
+            <div
+              class="balance-check"
+              [class.ok]="bsReport()!.isBalanced"
+              [class.err]="!bsReport()!.isBalanced">
+              <i
+                class="bi"
+                [ngClass]="bsReport()!.isBalanced
+                  ? 'bi-check-circle-fill'
+                  : 'bi-exclamation-triangle-fill'">
+              </i>
+              {{
+                bsReport()!.isBalanced
+                  ? 'Balance Sheet is balanced'
+                  : 'Balance Sheet is NOT balanced'
+              }}
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Balance equation -->
+      <div class="balance-equation erp-card">
+        <div class="erp-card__body">
+          <div class="equation-row">
+            <div class="eq-part">
+              <div class="eq-label">Total Assets</div>
+              <div class="eq-value text-primary-color">
+                {{ bsReport()!.totalAssets | bdtCurrency }}
+              </div>
+            </div>
+            <div class="eq-operator">=</div>
+            <div class="eq-part">
+              <div class="eq-label">Total Liabilities</div>
+              <div class="eq-value text-danger-color">
+                {{ bsReport()!.totalLiabilities | bdtCurrency }}
+              </div>
+            </div>
+            <div class="eq-operator">+</div>
+            <div class="eq-part">
+              <div class="eq-label">Total Equity</div>
+              <div class="eq-value text-success-color">
+                {{ bsReport()!.totalEquity | bdtCurrency }}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    }
+  }
+
+  <!-- ── Cash Flow ───────────────────────────────────── -->
+  @if (activeTab() === 'cf') {
+    @if (loadingCF()) {
+      <div class="report-loading">
+        <div class="spinner-dark"></div>
+        <span>Generating Cash Flow...</span>
+      </div>
+    } @else if (cfReport()) {
+      <div class="content-grid mb-20">
+
+        <div class="erp-card">
+          <div class="erp-card__header">
+            <div class="erp-card__header-left">
+              <h5>Cash Flow Statement</h5>
+              <p>{{ currentPeriod }}</p>
+            </div>
+          </div>
+          <div class="erp-card__body">
+
+            <!-- Operating -->
+            <div class="cf-section">
+              <div class="cf-section-title">
+                <i class="bi bi-gear"></i>
+                Operating Activities
+              </div>
+              <div class="cf-line">
+                <span>Cash from Operations</span>
+                <span
+                  class="cf-amount"
+                  [class.positive]="cfReport()!.operating >= 0"
+                  [class.negative]="cfReport()!.operating < 0">
+                  {{ cfReport()!.operating | bdtCurrency }}
+                </span>
+              </div>
+            </div>
+
+            <div class="cf-divider"></div>
+
+            <!-- Investing -->
+            <div class="cf-section">
+              <div class="cf-section-title">
+                <i class="bi bi-graph-up"></i>
+                Investing Activities
+              </div>
+              <div class="cf-line">
+                <span>Capital Expenditure</span>
+                <span
+                  class="cf-amount"
+                  [class.positive]="cfReport()!.investing >= 0"
+                  [class.negative]="cfReport()!.investing < 0">
+                  {{ cfReport()!.investing | bdtCurrency }}
+                </span>
+              </div>
+            </div>
+
+            <div class="cf-divider"></div>
+
+            <!-- Financing -->
+            <div class="cf-section">
+              <div class="cf-section-title">
+                <i class="bi bi-bank"></i>
+                Financing Activities
+              </div>
+              <div class="cf-line">
+                <span>Net Financing</span>
+                <span
+                  class="cf-amount"
+                  [class.positive]="cfReport()!.financing >= 0"
+                  [class.negative]="cfReport()!.financing < 0">
+                  {{ cfReport()!.financing | bdtCurrency }}
+                </span>
+              </div>
+            </div>
+
+            <div class="cf-divider"></div>
+
+            <!-- Net Cash -->
+            <div class="cf-net">
+              <span>Net Cash Flow</span>
+              <span
+                class="cf-net-value"
+                [class.positive]="cfReport()!.netCashFlow >= 0"
+                [class.negative]="cfReport()!.netCashFlow < 0">
+                {{ cfReport()!.netCashFlow | bdtCurrency }}
+              </span>
+            </div>
+
+            <div class="cf-balances mt-16">
+              <div class="cf-balance-row">
+                <span class="cf-balance-label">
+                  Opening Balance
+                </span>
+                <span class="cf-balance-value">
+                  {{ cfReport()!.openingBalance | bdtCurrency }}
+                </span>
+              </div>
+              <div class="cf-balance-row closing">
+                <span class="cf-balance-label">
+                  Closing Balance
+                </span>
+                <span class="cf-balance-value text-primary-color">
+                  {{ cfReport()!.closingBalance | bdtCurrency }}
+                </span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Cash flow chart -->
+        <div>
+          <app-finance-chart
+            title="Cash Flow Breakdown"
+            type="bar"
+            [chartData]="cfChartData()"/>
+
+          <!-- Waterfall summary -->
+          <div class="erp-card mt-16">
+            <div class="erp-card__body">
+              <div class="waterfall">
+                @for (item of waterfallData(); track item.label) {
+                  <div class="wf-item">
+                    <div class="wf-bar-wrap">
+                      <div
+                        class="wf-bar"
+                        [style.height.px]="getWfHeight(item.value)"
+                        [style.background]="item.color">
+                      </div>
+                    </div>
+                    <div class="wf-label">{{ item.label }}</div>
+                    <div
+                      class="wf-value"
+                      [style.color]="item.color">
+                      {{ item.value | bdtCurrency }}
+                    </div>
+                  </div>
+                }
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    }
+  }
+
+  <!-- ── VAT Report ─────────────────────────────────── -->
+  @if (activeTab() === 'vat') {
+    <div class="content-grid mb-20">
+
+      <!-- VAT Summary -->
+      <div class="erp-card">
+        <div class="erp-card__header">
+          <div class="erp-card__header-left">
+            <h5>VAT Return Summary</h5>
+            <p>Mushak 9.1 — {{ currentPeriod }}</p>
+          </div>
+          <span class="badge-status draft">Draft</span>
+        </div>
+        <div class="erp-card__body">
+
+          <div class="vat-section">
+            <div class="vat-section-title output">
+              Output VAT (Sales)
+            </div>
+            <div class="vat-line">
+              <span>Standard Rated (15%)</span>
+              <span class="vat-amount">
+                {{ outputVat() | bdtCurrency }}
+              </span>
+            </div>
+            <div class="vat-subtotal">
+              <span>Total Output VAT</span>
+              <span>{{ outputVat() | bdtCurrency }}</span>
+            </div>
+          </div>
+
+          <div class="vat-divider"></div>
+
+          <div class="vat-section">
+            <div class="vat-section-title input">
+              Input VAT (Purchases)
+            </div>
+            <div class="vat-line">
+              <span>Standard Rated (15%)</span>
+              <span class="vat-amount">
+                {{ inputVat() | bdtCurrency }}
+              </span>
+            </div>
+            <div class="vat-subtotal">
+              <span>Total Input VAT</span>
+              <span>{{ inputVat() | bdtCurrency }}</span>
+            </div>
+          </div>
+
+          <div class="vat-divider"></div>
+
+          <div
+            class="vat-net"
+            [class.payable]="netVat() > 0"
+            [class.refundable]="netVat() <= 0">
+            <span>
+              Net VAT {{ netVat() > 0 ? 'Payable' : 'Refundable' }}
+            </span>
+            <span class="vat-net-value">
+              {{ netVat() | bdtCurrency }}
+            </span>
+          </div>
+
+          <div class="vat-info-box mt-16">
+            <i class="bi bi-info-circle"></i>
+            <div>
+              <strong>BIN:</strong> 000999888-0201 |
+              <strong>Form:</strong> Mushak 9.1 |
+              <strong>Due:</strong> 15th of next month
+            </div>
+          </div>
+
+        </div>
+        <div class="erp-card__footer">
+          <div class="d-flex gap-8">
+            <button class="btn-outline-erp btn-outline-erp--sm">
+              <i class="bi bi-file-earmark-pdf"></i>
+              Mushak 9.1
+            </button>
+            <button class="btn-primary-erp btn-primary-erp--sm">
+              <i class="bi bi-send-check"></i>
+              File Return
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- VAT Entries breakdown -->
+      <div class="erp-card">
+        <div class="erp-card__header">
+          <div class="erp-card__header-left">
+            <h5>VAT Entries</h5>
+          </div>
+        </div>
+        <div class="erp-card__body p-0">
+          <div class="table-wrapper">
+            <table class="erp-table">
+              <thead>
+                <tr>
+                  <th>Period</th>
+                  <th>Type</th>
+                  <th>Musak Form</th>
+                  <th class="text-right">Taxable</th>
+                  <th class="text-right">VAT</th>
+                  <th class="text-center">Filed</th>
+                </tr>
+              </thead>
+              <tbody>
+                @for (entry of vatEntries(); track entry.id) {
+                  <tr>
+                    <td>
+                      <span class="col-code">
+                        {{ entry.vat_period }}
+                      </span>
+                    </td>
+                    <td>
+                      <span
+                        class="badge-status"
+                        [ngClass]="entry.entry_type">
+                        {{ entry.entry_type === 'output'
+                          ? 'Output' : 'Input' }}
+                      </span>
+                    </td>
+                    <td>
+                      <span class="col-code">
+                        {{ entry.musak_form }}
+                      </span>
+                    </td>
+                    <td class="text-right">
+                      <span class="col-amount">
+                        {{ entry.taxable_amount | bdtCurrency }}
+                      </span>
+                    </td>
+                    <td class="text-right">
+                      <span class="col-amount">
+                        {{ entry.vat_amount | bdtCurrency }}
+                      </span>
+                    </td>
+                    <td class="text-center">
+                      <span
+                        class="badge-status"
+                        [ngClass]="entry.is_filed
+                          ? 'paid' : 'draft'">
+                        {{ entry.is_filed ? 'Filed' : 'Pending' }}
+                      </span>
+                    </td>
+                  </tr>
+                }
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  }
+
+</div>
