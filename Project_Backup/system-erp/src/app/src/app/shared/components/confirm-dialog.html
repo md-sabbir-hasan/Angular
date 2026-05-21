@@ -1,0 +1,39 @@
+@if (isOpen) {
+  <!-- Backdrop -->
+  <div class="modal-backdrop fade show" (click)="onCancel()"></div>
+
+  <!-- Dialog -->
+  <div class="modal fade show d-block" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered modal-sm">
+      <div class="modal-content confirm-dialog">
+
+        <!-- Header -->
+        <div class="confirm-dialog__header">
+          <div class="confirm-icon" [ngClass]="iconClass">
+            <i class="bi" [ngClass]="icon"></i>
+          </div>
+        </div>
+
+        <!-- Body -->
+        <div class="confirm-dialog__body">
+          <h5>{{ title }}</h5>
+          <p>{{ message }}</p>
+        </div>
+
+        <!-- Footer -->
+        <div class="confirm-dialog__footer">
+          <button class="btn-outline-erp w-100" (click)="onCancel()">
+            {{ cancelText }}
+          </button>
+          <button
+            class="w-100"
+            [ngClass]="confirmBtnClass"
+            (click)="onConfirm()">
+            {{ confirmText }}
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+}

@@ -1,0 +1,58 @@
+<div class="form-group" [class.has-error]="hasError">
+  @if (label) {
+    <label>
+      {{ label }}
+      @if (required) { <span class="required">*</span> }
+    </label>
+  }
+
+  @if (type === 'select') {
+    <select
+      class="form-select"
+      [disabled]="disabled"
+      [(ngModel)]="value"
+      (ngModelChange)="onChange($event)"
+      (blur)="onTouched()">
+      @if (placeholder) {
+        <option value="">{{ placeholder }}</option>
+      }
+      @for (opt of options; track opt.value) {
+        <option [value]="opt.value">{{ opt.label }}</option>
+      }
+    </select>
+  } @else if (type === 'textarea') {
+    <textarea
+      class="form-control"
+      [placeholder]="placeholder"
+      [disabled]="disabled"
+      [rows]="rows"
+      [(ngModel)]="value"
+      (ngModelChange)="onChange($event)"
+      (blur)="onTouched()">
+    </textarea>
+  } @else {
+    <div [class.input-currency]="prefix">
+      @if (prefix) {
+        <span class="currency-prefix">{{ prefix }}</span>
+      }
+      <input
+        class="form-control"
+        [type]="type"
+        [placeholder]="placeholder"
+        [disabled]="disabled"
+        [(ngModel)]="value"
+        (ngModelChange)="onChange($event)"
+        (blur)="onTouched()" />
+    </div>
+  }
+
+  @if (hint && !hasError) {
+    <div class="form-hint">{{ hint }}</div>
+  }
+  @if (hasError && errorMessage) {
+    <div class="form-error">
+      <i class="bi bi-exclamation-circle"></i>
+      {{ errorMessage }}
+    </div>
+  }
+</div>
