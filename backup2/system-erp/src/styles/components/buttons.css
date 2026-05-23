@@ -1,0 +1,163 @@
+/* ============================================================
+   Buttons
+   ============================================================ */
+
+/* Base button style shared across variants */
+.btn-primary-erp,
+.btn-outline-erp,
+.btn-danger-erp,
+.btn-success-erp,
+.btn-accent-erp {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font-family: var(--font-primary);
+  font-size: 13.5px;
+  font-weight: 500;
+  border: none;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: var(--transition-fast);
+  white-space: nowrap;
+  padding: 9px 18px;
+}
+
+.btn-primary-erp:disabled,
+.btn-outline-erp:disabled,
+.btn-danger-erp:disabled,
+.btn-success-erp:disabled,
+.btn-accent-erp:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none !important;
+}
+
+/* Primary Button */
+.btn-primary-erp {
+  background: var(--primary-light);
+  color: #fff;
+}
+
+.btn-primary-erp:hover:not(:disabled) {
+  background: var(--primary);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
+
+.btn-primary-erp--sm {
+  padding: 6px 12px;
+  font-size: 12.5px;
+}
+
+.btn-primary-erp--xs {
+  padding: 4px 8px;
+  font-size: 11.5px;
+}
+
+.btn-primary-erp--lg {
+  padding: 12px 24px;
+  font-size: 15px;
+}
+
+.btn-primary-erp--full {
+  width: 100%;
+}
+
+/* Outline Button */
+.btn-outline-erp {
+  background: transparent;
+  color: var(--text-muted);
+  border: 1px solid var(--border);
+}
+
+.btn-outline-erp:hover:not(:disabled) {
+  background: var(--bg);
+  color: var(--text);
+  border-color: var(--text-light);
+}
+
+.btn-outline-erp--sm {
+  padding: 5px 12px;
+  font-size: 12.5px;
+}
+
+.btn-outline-erp--xs {
+  padding: 3px 8px;
+  font-size: 11.5px;
+}
+
+.btn-outline-erp--full {
+  width: 100%;
+}
+
+/* Danger Button */
+.btn-danger-erp {
+  background: var(--danger-bg);
+  color: var(--danger);
+}
+
+.btn-danger-erp:hover:not(:disabled) {
+  background: var(--danger-border);
+}
+
+.btn-danger-erp--sm {
+  padding: 5px 10px;
+  font-size: 12px;
+}
+
+/* Success Button */
+.btn-success-erp {
+  background: var(--success-bg);
+  color: var(--success);
+}
+
+.btn-success-erp:hover:not(:disabled) {
+  background: var(--success-border);
+}
+
+/* Accent Button */
+.btn-accent-erp {
+  background: var(--accent);
+  color: var(--primary);
+  font-weight: 600;
+}
+
+/* Icon Button */
+.btn-icon {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-muted);
+  font-size: 14px;
+  cursor: pointer;
+  transition: var(--transition-fast);
+}
+
+.btn-icon:hover {
+  background: var(--bg);
+  color: var(--text);
+}
+
+.btn-icon--danger:hover {
+  background: var(--danger-bg);
+  color: var(--danger);
+  border-color: var(--danger-border);
+}
+
+.btn-icon--success:hover {
+  background: var(--success-bg);
+  color: var(--success);
+  border-color: var(--success-border);
+}
+
+.btn-icon--primary:hover {
+  background: var(--primary-50);
+  color: var(--primary-light);
+  border-color: var(--primary-100);
+}

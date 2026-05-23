@@ -1,0 +1,29 @@
+<div class="page-header">
+  <div class="page-header__left">
+    <!-- Breadcrumb -->
+    @if (breadcrumbs.length > 0) {
+      <nav class="breadcrumb-nav mb-1">
+        @for (bc of breadcrumbs; track bc.label; let last = $last) {
+          @if (!last) {
+            <a [routerLink]="bc.route" class="bc-item">{{ bc.label }}</a>
+            <span class="bc-sep">
+              <i class="bi bi-chevron-right"></i>
+            </span>
+          } @else {
+            <span class="bc-item active">{{ bc.label }}</span>
+          }
+        }
+      </nav>
+    }
+    <!-- Title -->
+    <h2 class="page-title">{{ title }}</h2>
+    @if (subtitle) {
+      <p class="page-subtitle">{{ subtitle }}</p>
+    }
+  </div>
+
+  <!-- Actions slot -->
+  <div class="page-header__actions">
+    <ng-content></ng-content>
+  </div>
+</div>

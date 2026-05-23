@@ -1,0 +1,82 @@
+.input-icon {
+  position: relative;
+}
+.input-icon > i:first-child {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #94a3b8;
+  font-size: 15px;
+  pointer-events: none;
+}
+.input-icon input {
+  padding-left: 38px;
+}
+
+.password-input .toggle-pw {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #94a3b8;
+  cursor: pointer;
+  font-size: 16px;
+  pointer-events: all;
+}
+.password-input .toggle-pw:hover {
+  color: #64748b;
+}
+
+.auth-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.demo-box {
+  background: #f0f9ff;
+  border: 1px solid #bae6fd;
+  border-radius: 8px;
+  padding: 12px;
+  font-size: 12px;
+}
+
+.demo-title {
+  font-weight: 600;
+  color: #075985;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.demo-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 4px;
+  flex-wrap: wrap;
+  color: #64748b;
+}
+.demo-row span {
+  min-width: 80px;
+}
+
+code {
+  background: #e0f2fe;
+  color: #0369a1;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 11px;
+}
+
+.mb-16 {
+  margin-bottom: 16px;
+}
+
+.mb-20 {
+  margin-bottom: 20px;
+}
+
+/*# sourceMappingURL=login.css.map */

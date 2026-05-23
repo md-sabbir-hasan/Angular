@@ -1,0 +1,14 @@
+<div class="toast-container">
+  @for (toast of notification.toasts(); track toast.id) {
+    <div
+      class="erp-toast"
+      [ngClass]="'erp-toast--' + toast.type">
+      <i class="bi" [ngClass]="getIcon(toast.type)"></i>
+      <span class="toast-message">{{ toast.message }}</span>
+      <i
+        class="bi bi-x toast-close"
+        (click)="notification.remove(toast.id)">
+      </i>
+    </div>
+  }
+</div>

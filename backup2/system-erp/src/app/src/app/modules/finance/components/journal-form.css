@@ -1,0 +1,84 @@
+.mb-8 {
+  margin-bottom: 8px;
+}
+
+.mb-16 {
+  margin-bottom: 16px;
+}
+
+.mt-8 {
+  margin-top: 8px;
+}
+
+.gap-8 {
+  gap: 8px;
+}
+
+.flex-1 {
+  flex: 1;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.form-control-sm {
+  padding: 5px 8px;
+  font-size: 13px;
+}
+
+.form-select-sm {
+  padding: 5px 8px;
+  font-size: 13px;
+}
+
+tfoot td {
+  padding: 10px 14px;
+  background: #f8fafc;
+  border-top: 2px solid #e2e8f0;
+}
+
+.balance-indicator {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.balance-indicator.balanced {
+  background: #dcfce7;
+  color: #166534;
+}
+
+.balance-indicator.unbalanced {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+.btn-success-erp {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 9px 18px;
+  background: #dcfce7;
+  color: #166534;
+  border-radius: 8px;
+  font-size: 13.5px;
+  font-weight: 500;
+  border: none;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.btn-success-erp:hover {
+  background: #bbf7d0;
+}
+.btn-success-erp:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/*# sourceMappingURL=journal-form.css.map */
