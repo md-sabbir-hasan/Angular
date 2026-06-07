@@ -1,0 +1,42 @@
+/* ============================================================
+   Footer
+   ============================================================ */
+
+.app-footer {
+  height: var(--footer-height);
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+  flex-shrink: 0;
+  margin-top: auto;
+}
+
+.app-footer .footer-left {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.app-footer .footer-left span {
+  font-weight: 500;
+  color: var(--text);
+}
+
+.app-footer .footer-right {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 16px;
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.app-footer .footer-right a {
+  color: var(--text-muted);
+}
+
+.app-footer .footer-right a:hover {
+  color: var(--primary-light);
+}

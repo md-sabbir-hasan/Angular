@@ -1,0 +1,35 @@
+.mb-8 {
+  margin-bottom: 8px;
+}
+
+.mb-16 {
+  margin-bottom: 16px;
+}
+
+.mt-16 {
+  margin-top: 16px;
+}
+
+.gap-8 {
+  gap: 8px;
+}
+
+.flex-1 {
+  flex: 1;
+}
+
+.text-danger {
+  color: #991b1b;
+}
+
+.form-control-sm {
+  padding: 5px 8px;
+  font-size: 13px;
+}
+
+.form-select-sm {
+  padding: 5px 8px;
+  font-size: 13px;
+}
+
+/*# sourceMappingURL=invoice-form.css.map */

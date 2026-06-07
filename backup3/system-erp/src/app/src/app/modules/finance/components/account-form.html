@@ -1,0 +1,115 @@
+<app-modal
+  [isOpen]="isOpen"
+  [title]="editAccount ? 'Edit Account' : 'New Account'"
+  icon="bi-diagram-3"
+  size="md"
+  [showFooter]="true"
+  (closed)="onCancel()">
+
+  <form (ngSubmit)="onSubmit()" #form="ngForm">
+
+    <!-- Account Code -->
+    <div class="form-group">
+      <label>Account Code <span class="required">*</span></label>
+      <input
+        type="text"
+        class="form-control"
+        placeholder="e.g. 1001"
+        [(ngModel)]="formData.code"
+        name="code"
+        required/>
+      <div class="form-hint">
+        Use standard chart of accounts numbering
+      </div>
+    </div>
+
+    <!-- Account Name -->
+    <div class="form-group">
+      <label>Account Name <span class="required">*</span></label>
+      <input
+        type="text"
+        class="form-control"
+        placeholder="e.g. Cash in Hand"
+        [(ngModel)]="formData.name"
+        name="name"
+        required/>
+    </div>
+
+    <!-- Account Type -->
+    <div class="form-group">
+      <label>Account Type <span class="required">*</span></label>
+      <select
+        class="form-select"
+        [(ngModel)]="formData.type"
+        name="type"
+        required>
+        <option value="">Select type...</option>
+        @for (type of accountTypes; track type.value) {
+          <option [value]="type.value">{{ type.label }}</option>
+        }
+      </select>
+    </div>
+
+    <!-- Parent Account -->
+    <div class="form-group">
+      <label>Parent Account</label>
+      <select
+        class="form-select"
+        [(ngModel)]="formData.parent_id"
+        name="parent_id">
+        <option [value]="null">None (Top Level)</option>
+        @for (acc of parentAccounts; track acc.id) {
+          <option [value]="acc.id">
+            {{ acc.code }} — {{ acc.name }}
+          </option>
+        }
+      </select>
+    </div>
+
+    <!-- Description -->
+    <div class="form-group">
+      <label>Description</label>
+      <textarea
+        class="form-control"
+        placeholder="Optional description..."
+        [(ngModel)]="formData.description"
+        name="description"
+        rows="2">
+      </textarea>
+    </div>
+
+    <!-- Active Status -->
+    <div class="form-group">
+      <label class="form-check-erp">
+        <input
+          type="checkbox"
+          [(ngModel)]="formData.is_active"
+          name="is_active"/>
+        <span>Account is Active</span>
+      </label>
+    </div>
+
+  </form>
+
+  <!-- Footer -->
+  <div slot="footer" class="d-flex gap-8 w-full">
+    <button
+      class="btn-outline-erp flex-1"
+      (click)="onCancel()">
+      <i class="bi bi-x"></i> Cancel
+    </button>
+    <button
+      class="btn-primary-erp flex-1"
+      [disabled]="loading()"
+      (click)="onSubmit()">
+      @if (loading()) {
+        <span class="spinner-sm"></span>
+        Saving...
+      } @else {
+        <i class="bi bi-check-lg"></i>
+        {{ editAccount ? 'Update' : 'Create' }} Account
+      }
+    </button>
+  </div>
+
+</app-modal>

@@ -1,0 +1,36 @@
+:host {
+  display: block;
+}
+
+.mob-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+}
+
+.main-wrap {
+  margin-left: 260px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  transition: margin-left 0.25s ease;
+  background: #f1f5f9;
+}
+
+.main-wrap--collapsed {
+  margin-left: 64px;
+}
+
+.main-page {
+  padding: 24px;
+  flex: 1;
+}
+
+@media (max-width: 992px) {
+  .main-wrap {
+    margin-left: 0 !important;
+  }
+}
+
+/*# sourceMappingURL=main-layout.css.map */
